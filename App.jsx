@@ -1,12 +1,12 @@
-import { View, Text } from 'react-native'
 import React from 'react'
 import LoginPage from './src/page/LoginPage/LoginPage'
-
+import { PaperProvider } from 'react-native-paper';
 
 export default function App() {
   return (
-    <View>
-      <LoginPage/>
-    </View>
+    <PaperProvider>
+      <LoginPage />
+    </PaperProvider>
+
   )
 }
