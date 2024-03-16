@@ -1,14 +1,21 @@
 import { Text, View, ScrollView, Image, StyleSheet } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import admin_img from '../../assets/img/admin.png'
 import TextField from '../../common/TextField/TextField';
 import MainFooter from '../../component/MainFooter/MainFooter';
-
-import { Button } from 'react-native-paper';
+import DesignButton from '../../common/DesignButton/DesignButton';
 
 export default function LoginPage() {
-    return (
 
+    const [email,setEmail] = useState("")
+    const [password,setPassword] = useState("")
+
+
+const signIn = () => {
+    console.log(email,password);
+}
+
+    return (
         <ScrollView>
             <View style={styles.mainView}>
                 <View style={styles.imgView}>
@@ -17,16 +24,23 @@ export default function LoginPage() {
 
                 <View style={styles.textFieldContainer}>
                        <View style={styles.textView}>
-                            <TextField label={'Email'} style={styles.textField} onChange={(val) => console.log(val)}/>
+                            <TextField label={'Email'} style={styles.textField} onChange={(val) => setEmail(val)}/>
                        </View>
 
                        <View style={styles.textView}>
-                            <TextField label={'Password'} type={'password'}  style={styles.textField}  onChange={(val) => console.log(val)}/>
+                            <TextField label={'Password'} type={'password'}  style={styles.textField}  onChange={(val) => setPassword(val)}/>
                        </View>
                 </View>
 
-                <View>
-                    
+                <View style={styles.buttonContainer} >
+                <DesignButton 
+                style={styles.btn}
+                buttonColor={'#2980b9'} 
+                textColor={'white'}
+                rippleColor={'#3498db'}
+                label={'Sign In'}
+                onPress={signIn}
+                />
                 </View>
             </View>
 
@@ -59,5 +73,13 @@ const styles = StyleSheet.create({
 
     textView:{
         padding:4
+    },
+    buttonContainer:{
+        marginTop:20,
+        width:"85%"
+    },
+    btn:{
+        borderRadius:4,
+        width:"100%",
     },
 })
