@@ -1,6 +1,8 @@
 import { View, Image, StyleSheet, ActivityIndicator } from 'react-native';
 import React, { useState } from 'react';
 import home_img from '../../assets/img/home-car.jpg';
+import MainFooter from '../../component/MainFooter/MainFooter';
+
 import {
     Text,
     Button,
@@ -18,29 +20,32 @@ export default function HomePage() {
     };
 
     return (
-        <View style={styles.mainView}>
-            <Image style={styles.img} source={home_img} />
-            <View style={styles.overlay}></View>
-            <View style={styles.textContainer}>
-                <Text style={styles.headlineMedium}>Well Come To </Text>
-                <Text style={[styles.headlineMedium, styles.redText]}>Riyapola</Text>
-            </View>
-            <View style={styles.btnView}>
-                <Button
-                    mode="contained"
-                    onPress={goToLoginPage}
-                    style={styles.buttonStyle}
-                    labelStyle={styles.buttonLabel}>
-                    Go to Login Page
-                </Button>
-            </View>
-
-            {loading && (
-                <View style={styles.loaderContainer}>
-                    <ActivityIndicator size="large" color="white" />
+        <>
+            <View style={styles.mainView}>
+                <Image style={styles.img} source={home_img} />
+                <View style={styles.overlay}></View>
+                <View style={styles.textContainer}>
+                    <Text style={styles.headlineMedium}>Well Come To </Text>
+                    <Text style={[styles.headlineMedium, styles.redText]}>Riyapola</Text>
                 </View>
-            )}
-        </View>
+                <View style={styles.btnView}>
+                    <Button
+                        mode="contained"
+                        onPress={goToLoginPage}
+                        style={styles.buttonStyle}
+                        labelStyle={styles.buttonLabel}>
+                        Go to Login Page
+                    </Button>
+                </View>
+
+                {loading && (
+                    <View style={styles.loaderContainer}>
+                        <ActivityIndicator size="large" color="white" />
+                    </View>
+                )}
+            </View>
+            <View><MainFooter /></View>
+        </>
     );
 }
 

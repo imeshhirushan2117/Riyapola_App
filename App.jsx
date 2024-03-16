@@ -8,8 +8,8 @@ import MainFooter from './src/component/MainFooter/MainFooter';
 export default function App() {
   return (
     <PaperProvider>
-      {/* <HomePage /> */}
-      <MainFooter />
+      <HomePage />
+      {/* <MainFooter /> */}
     </PaperProvider>
 
   )
