@@ -34,6 +34,11 @@ export default function RegisterPage({navigation}) {
             <ImageBackground source={require('../../assets/img/loginCar3.jpg')} style={styles.backgroundImage}>
 
                 <View style={styles.overlay} />
+
+                <View style={styles.topicView}>
+                    <Text style={styles.topicText}>Customer Register</Text>
+                </View>
+
                 <View style={styles.mainView}>
                         <View style={styles.imgView}>
                             <Image source={require('../../assets/img/register.png')} />
@@ -146,4 +151,14 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
     },
+    topicView: {
+        paddingTop:50
+    },
+
+    topicText: {
+        color: "white",
+        fontSize: 20,
+        fontWeight: 'bold',
+        textAlign: 'center'
+    }
 });

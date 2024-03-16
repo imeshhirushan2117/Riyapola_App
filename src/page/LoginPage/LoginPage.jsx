@@ -35,7 +35,13 @@ export default function LoginPage({ navigation }) {
             <ImageBackground source={require('../../assets/img/loginCar4.jpg')} style={styles.backgroundImage}>
 
                 <View style={styles.overlay} />
+
+                <View style={styles.topicView}>
+                    <Text style={styles.topicText}>Sign In</Text>
+                </View>
+
                 <View style={styles.mainView}>
+
                     <View style={styles.imgView}>
                         <Image source={require('../../assets/img/admin.png')} />
                     </View>
@@ -66,7 +72,7 @@ export default function LoginPage({ navigation }) {
                             <ActivityIndicator size="large" color="white" />
                         </View>
                     )}
-                    
+
                     <View style={styles.textContainer}>
                         <Text style={styles.text} onPress={register}>Register Customer</Text>
                     </View>
@@ -137,4 +143,15 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
     },
+
+    topicView: {
+        paddingTop:50
+    },
+
+    topicText: {
+        color: "white",
+        fontSize: 20,
+        fontWeight: 'bold',
+        textAlign: 'center'
+    }
 });
