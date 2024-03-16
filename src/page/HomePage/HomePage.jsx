@@ -1,4 +1,4 @@
-import { View, Image, StyleSheet, ActivityIndicator } from 'react-native';
+import { View, Image, StyleSheet, ActivityIndicator , ScrollView} from 'react-native';
 import React, { useState } from 'react';
 import home_img from '../../assets/img/home-car.jpg';
 import MainFooter from '../../component/MainFooter/MainFooter';
