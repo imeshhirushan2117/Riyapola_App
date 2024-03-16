@@ -4,29 +4,40 @@ import TextField from '../../common/TextField/TextField';
 import MainFooter from '../../component/MainFooter/MainFooter';
 import DesignButton from '../../common/DesignButton/DesignButton';
 
-export default function LoginPage() {
+export default function RegisterPage() {
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const signIn = () => {
-        console.log(email, password);
+    const register = () => {
+        console.log(firstName,lastName , email, password);
     }
 
-    const register = () => {
-        console.log("Register");
+    const back = () => {
+        console.log("Back");
     }
 
     return (
         <ScrollView>
-            <ImageBackground source={require('../../assets/img/loginCar4.jpg')} style={styles.backgroundImage}>
+            <ImageBackground source={require('../../assets/img/loginCar3.jpg')} style={styles.backgroundImage}>
 
                 <View style={styles.overlay} />
                 <View style={styles.mainView}>
                         <View style={styles.imgView}>
-                            <Image source={require('../../assets/img/admin.png')} />
+                            <Image source={require('../../assets/img/register.png')} />
                         </View>
 
                         <View style={styles.textFieldContainer}>
+                            <View style={styles.textView}>
+                                <TextField label={'First Name'} value={firstName}  style={styles.textField} onChange={(val) => setFirstName(val)} />
+                            </View>
+
+
+                            <View style={styles.textView}>
+                                <TextField label={'Last Name'} value={lastName} style={styles.textField} onChange={(val) => setLastName(val)} />
+                            </View>
+
                             <View style={styles.textView}>
                                 <TextField label={'Email'} value={email} style={styles.textField} onChange={(val) => setEmail(val)} />
                             </View>
@@ -42,12 +53,12 @@ export default function LoginPage() {
                                 buttonColor={'#A50010'}
                                 textColor={'white'}
                                 rippleColor={'#64000A'}
-                                label={'Sign In'}
-                                onPress={signIn}
+                                label={'Register'}
+                                onPress={register}
                             />
                         </View>
                         <View style={styles.textContainer}>
-                            <Text style={styles.text} onPress={register}>Register Customer</Text>
+                            <Text style={styles.text} onPress={back}>Back</Text>
                         </View>
                     </View>
             </ImageBackground>
