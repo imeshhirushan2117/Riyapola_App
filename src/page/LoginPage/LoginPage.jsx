@@ -4,16 +4,16 @@ import TextField from '../../common/TextField/TextField';
 import MainFooter from '../../component/MainFooter/MainFooter';
 import DesignButton from '../../common/DesignButton/DesignButton';
 
-export default function LoginPage() {
+export default function LoginPage({navigation}) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const signIn = () => {
-        console.log(email, password);
+        navigation.navigate('Drawer')
     }
 
     const register = () => {
-        console.log("Register");
+        navigation.navigate('Register')
     }
 
     return (

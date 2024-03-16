@@ -8,13 +8,14 @@ import {
     Button,
 } from 'react-native-paper';
 
-export default function HomePage() {
+export default function HomePage({navigation}) {
     const [loading, setLoading] = useState(false);
 
     const goToLoginPage = () => {
         setLoading(true);
         setTimeout(() => {
             console.log("Navigating to login page...");
+            navigation.navigate('Login')
             setLoading(false);
         }, 1000);
     };

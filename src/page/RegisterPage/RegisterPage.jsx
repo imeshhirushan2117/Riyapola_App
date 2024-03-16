@@ -4,18 +4,18 @@ import TextField from '../../common/TextField/TextField';
 import MainFooter from '../../component/MainFooter/MainFooter';
 import DesignButton from '../../common/DesignButton/DesignButton';
 
-export default function RegisterPage() {
+export default function RegisterPage({navigation}) {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const register = () => {
-        console.log(firstName,lastName , email, password);
+        navigation.navigate('Login')
     }
 
     const back = () => {
-        console.log("Back");
+        navigation.navigate('Login')
     }
 
     return (
