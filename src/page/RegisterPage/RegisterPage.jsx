@@ -1,4 +1,4 @@
-import { Text, View, ScrollView, Image, StyleSheet, ImageBackground } from 'react-native';
+import { Text, View, ScrollView, Image, StyleSheet, ImageBackground , ActivityIndicator } from 'react-native';
 import React, { useState } from 'react';
 import TextField from '../../common/TextField/TextField';
 import MainFooter from '../../component/MainFooter/MainFooter';
@@ -10,12 +10,23 @@ export default function RegisterPage({navigation}) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    const [loading, setLoading] = useState(false);
     const register = () => {
-        navigation.navigate('Login')
+        setLoading(true);
+        setTimeout(() => {
+            console.log("Navigating to login page...");
+            navigation.navigate('Login')
+            setLoading(false);
+        }, 1000);      
     }
 
     const back = () => {
-        navigation.navigate('Login')
+        setLoading(true);
+        setTimeout(() => {
+            console.log("Navigating to login page...");
+            navigation.navigate('Login')
+            setLoading(false);
+        }, 1000);    
     }
 
     return (
@@ -57,6 +68,13 @@ export default function RegisterPage({navigation}) {
                                 onPress={register}
                             />
                         </View>
+
+                        {loading && (
+                        <View style={styles.loaderContainer}>
+                            <ActivityIndicator size="large" color="white" />
+                        </View>
+                    )}
+
                         <View style={styles.textContainer}>
                             <Text style={styles.text} onPress={back}>Back</Text>
                         </View>
@@ -116,5 +134,16 @@ const styles = StyleSheet.create({
         fontStyle: 'italic',
         textAlign: 'left',
         color: 'white'
+    },
+
+    loaderContainer: {
+        position: 'absolute',
+        bottom: 40,
+        zIndex: 1000,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        width: '100%',
+        height: '100%',
     },
 });

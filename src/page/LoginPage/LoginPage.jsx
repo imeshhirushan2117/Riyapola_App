@@ -1,19 +1,33 @@
-import { Text, View, ScrollView, Image, StyleSheet, ImageBackground } from 'react-native';
+import { Text, View, ScrollView, Image, StyleSheet, ImageBackground, ActivityIndicator } from 'react-native';
 import React, { useState } from 'react';
 import TextField from '../../common/TextField/TextField';
 import MainFooter from '../../component/MainFooter/MainFooter';
 import DesignButton from '../../common/DesignButton/DesignButton';
 
-export default function LoginPage({navigation}) {
+export default function LoginPage({ navigation }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const signIn = () => {
-        navigation.navigate('Drawer')
+        setLoading(true);
+        setTimeout(() => {
+            console.log("Navigating to login page...");
+            navigation.navigate('Drawer')
+            setLoading(false);
+        }, 1000);
     }
 
     const register = () => {
-        navigation.navigate('Register')
+
+        setLoading(true);
+        setTimeout(() => {
+            console.log("Navigating to login page...");
+            navigation.navigate('Register')
+            setLoading(false);
+        }, 1000);
+
+
     }
 
     return (
@@ -22,34 +36,41 @@ export default function LoginPage({navigation}) {
 
                 <View style={styles.overlay} />
                 <View style={styles.mainView}>
-                        <View style={styles.imgView}>
-                            <Image source={require('../../assets/img/admin.png')} />
+                    <View style={styles.imgView}>
+                        <Image source={require('../../assets/img/admin.png')} />
+                    </View>
+
+                    <View style={styles.textFieldContainer}>
+                        <View style={styles.textView}>
+                            <TextField label={'Email'} value={email} style={styles.textField} onChange={(val) => setEmail(val)} />
                         </View>
 
-                        <View style={styles.textFieldContainer}>
-                            <View style={styles.textView}>
-                                <TextField label={'Email'} value={email} style={styles.textField} onChange={(val) => setEmail(val)} />
-                            </View>
-
-                            <View style={styles.textView}>
-                                <TextField label={'Password'} value={password} type={'password'} style={styles.textField} onChange={(val) => setPassword(val)} />
-                            </View>
-                        </View>
-
-                        <View style={styles.buttonContainer} >
-                            <DesignButton
-                                style={styles.btn}
-                                buttonColor={'#A50010'}
-                                textColor={'white'}
-                                rippleColor={'#64000A'}
-                                label={'Sign In'}
-                                onPress={signIn}
-                            />
-                        </View>
-                        <View style={styles.textContainer}>
-                            <Text style={styles.text} onPress={register}>Register Customer</Text>
+                        <View style={styles.textView}>
+                            <TextField label={'Password'} value={password} type={'password'} style={styles.textField} onChange={(val) => setPassword(val)} />
                         </View>
                     </View>
+
+                    <View style={styles.buttonContainer} >
+                        <DesignButton
+                            style={styles.btn}
+                            buttonColor={'#A50010'}
+                            textColor={'white'}
+                            rippleColor={'#64000A'}
+                            label={'Sign In'}
+                            onPress={signIn}
+                        />
+                    </View>
+
+                    {loading && (
+                        <View style={styles.loaderContainer}>
+                            <ActivityIndicator size="large" color="white" />
+                        </View>
+                    )}
+                    
+                    <View style={styles.textContainer}>
+                        <Text style={styles.text} onPress={register}>Register Customer</Text>
+                    </View>
+                </View>
             </ImageBackground>
 
             <View>
@@ -105,5 +126,15 @@ const styles = StyleSheet.create({
         fontStyle: 'italic',
         textAlign: 'left',
         color: 'white'
+    },
+    loaderContainer: {
+        position: 'absolute',
+        bottom: 40,
+        zIndex: 1000,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        width: '100%',
+        height: '100%',
     },
 });
