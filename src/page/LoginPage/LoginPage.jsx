@@ -1,85 +1,109 @@
-import { Text, View, ScrollView, Image, StyleSheet } from 'react-native'
-import React, { useState } from 'react'
-import admin_img from '../../assets/img/admin.png'
+import { Text, View, ScrollView, Image, StyleSheet, ImageBackground } from 'react-native';
+import React, { useState } from 'react';
 import TextField from '../../common/TextField/TextField';
 import MainFooter from '../../component/MainFooter/MainFooter';
 import DesignButton from '../../common/DesignButton/DesignButton';
 
 export default function LoginPage() {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
-    const [email,setEmail] = useState("")
-    const [password,setPassword] = useState("")
+    const signIn = () => {
+        console.log(email, password);
+    }
 
-
-const signIn = () => {
-    console.log(email,password);
-}
+    const register = () => {
+        console.log("Register");
+    }
 
     return (
         <ScrollView>
-            <View style={styles.mainView}>
-                <View style={styles.imgView}>
-                    <Image source={admin_img} />
-                </View>
+            <ImageBackground source={require('../../assets/img/loginCar4.jpg')} style={styles.backgroundImage}>
 
-                <View style={styles.textFieldContainer}>
-                       <View style={styles.textView}>
-                            <TextField label={'Email'} style={styles.textField} onChange={(val) => setEmail(val)}/>
-                       </View>
+                <View style={styles.overlay} />
+                <View style={styles.mainView}>
+                        <View style={styles.imgView}>
+                            <Image source={require('../../assets/img/admin.png')} />
+                        </View>
 
-                       <View style={styles.textView}>
-                            <TextField label={'Password'} type={'password'}  style={styles.textField}  onChange={(val) => setPassword(val)}/>
-                       </View>
-                </View>
+                        <View style={styles.textFieldContainer}>
+                            <View style={styles.textView}>
+                                <TextField label={'Email'} style={styles.textField} onChange={(val) => setEmail(val)} />
+                            </View>
 
-                <View style={styles.buttonContainer} >
-                <DesignButton 
-                style={styles.btn}
-                buttonColor={'#2980b9'} 
-                textColor={'white'}
-                rippleColor={'#3498db'}
-                label={'Sign In'}
-                onPress={signIn}
-                />
-                </View>
-            </View>
+                            <View style={styles.textView}>
+                                <TextField label={'Password'} type={'password'} style={styles.textField} onChange={(val) => setPassword(val)} />
+                            </View>
+                        </View>
 
-            {/* <View>
+                        <View style={styles.buttonContainer} >
+                            <DesignButton
+                                style={styles.btn}
+                                buttonColor={'#A50010'}
+                                textColor={'white'}
+                                rippleColor={'#64000A'}
+                                label={'Sign In'}
+                                onPress={signIn}
+                            />
+                        </View>
+                        <View style={styles.textContainer}>
+                            <Text style={styles.text} onPress={register}>Register Customer</Text>
+                        </View>
+                    </View>
+            </ImageBackground>
+
+            <View>
                 <MainFooter />
-            </View> */}
+            </View>
         </ScrollView>
-    )
+    );
 }
 
 const styles = StyleSheet.create({
+    backgroundImage: {
+        flex: 1,
+        resizeMode: "cover",
+    },
+    overlay: {
+        ...StyleSheet.absoluteFillObject,
+        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+    },
     mainView: {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        // backgroundColor: 'rgba(125, 0, 16, 1)' 
+        height: 650,
     },
-
     imgView: {
-      
+
     },
     textFieldContainer: {
-        width: "85%", 
-        marginTop: 20, 
+        width: "85%",
+        marginTop: 20,
     },
-
-    textField:{
-        width:"100%",
+    textField: {
+        width: "100%",
     },
-
-    textView:{
-        padding:4
+    textView: {
+        padding: 4
     },
-    buttonContainer:{
-        marginTop:20,
-        width:"85%"
+    buttonContainer: {
+        marginTop: 20,
+        width: "85%"
     },
-    btn:{
-        borderRadius:4,
-        width:"100%",
+    btn: {
+        borderRadius: 4,
+        width: "100%",
+        fontSize: 18,
     },
-})
+    textContainer: {
+        paddingTop: 15,
+        width: '85%',
+    },
+    text: {
+        fontSize: 15,
+        fontStyle: 'italic',
+        textAlign: 'left',
+        color: 'white'
+    },
+});
