@@ -34,6 +34,13 @@ export default class MainFooter extends Component {
                         </View>
                     </View>
                 </View>
+
+                <View style={styles.footer}>
+                    <Text style={styles.copyright}>
+                        Copyright © 2024 by Codehal | All Rights reserved by</Text>
+                        <Text style={styles.name}>Imesh Hirushan</Text>
+                    <Text style={styles.email}>imeshhirushan2117@gmail.com</Text>
+                </View>
             </View>
         )
     }
@@ -51,7 +58,7 @@ const styles = StyleSheet.create({
         paddingVertical: 15,
     },
     iconContainer: {
-      
+
         alignItems: 'center',
     },
     image: {
@@ -70,5 +77,26 @@ const styles = StyleSheet.create({
     },
     textView: {
         alignItems: 'center',
-    }
+    },
+
+    // black footer
+    footer: {
+        backgroundColor: 'black',
+        padding: 20,
+        alignItems: 'center',
+    },
+    copyright: {
+        color: 'white',
+        fontSize: 12,
+        textAlign: 'center',
+        marginBottom: 5,
+    },
+    email: {
+        color: 'white',
+        fontSize: 12,
+        textAlign: 'center',
+    },
+    name: {
+        color: '#A50010',
+    },
 })
