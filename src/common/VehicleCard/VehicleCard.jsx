@@ -3,7 +3,7 @@ import { Card, Text } from 'react-native-paper';
 import { View, Image, StyleSheet } from 'react-native';
 import DesignButton from '../DesignButton/DesignButton';
 
-export default function VehicleCard({ img, brandName, moduleName, type, transmission, passengers, status , onPress}) {
+export default function VehicleCard({ img, brandName, moduleName, type, transmission, passengers, status, onPress }) {
 
     const statusColor = status === 'Available Now' ? '#007ACC' : '#A50010';
 
@@ -29,9 +29,9 @@ export default function VehicleCard({ img, brandName, moduleName, type, transmis
                 <View style={styles.btnView}>
                     <DesignButton
                         style={styles.btn}
-                        buttonColor={'#16a085'}
+                        buttonColor={'#A50010'}
                         textColor={'white'}
-                        rippleColor={'#1abc9c'}
+                        rippleColor={'#64000A'}
                         label={'More Information'}
                         onPress={onPress}
                     />
@@ -81,8 +81,8 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold',
     },
-    btnView:{
-        padding:10,
+    btnView: {
+        padding: 10,
     },
     btn: {
         borderRadius: 10,
