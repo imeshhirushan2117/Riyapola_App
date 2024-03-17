@@ -12,7 +12,7 @@ export default function Vehicles() {
     <ScrollView>
       <View style={styles.mainView}>
         <VehicleCard
-        img={rent_car_1}
+        img={rent_car_2}
         brandName={'MITSUBISHI'}
         moduleName={'MONTERO SPORT'}
         type={'Diesel'}
@@ -25,7 +25,7 @@ export default function Vehicles() {
 
       <View style={styles.mainView}>
         <VehicleCard
-        img={rent_car_2}
+        img={rent_car_1}
         brandName={'MITSUBISHI'}
         moduleName={'MONTERO SPORT'}
         type={'Diesel'}
