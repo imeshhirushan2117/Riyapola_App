@@ -1,10 +1,34 @@
-import { View, Text } from 'react-native'
 import React from 'react'
+import Vehicles from '../../page/Vehicles/Vehicles';
+import MyProfile from '../../page/MyProfile/MyProfile';
+import { createDrawerNavigator, DrawerItem, DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
 
-export default function DrawerNav() {
+const Drawer = createDrawerNavigator();
+
+export default function DrawerNav({navigation}) {
+
+  const logout = () => {
+    navigation.navigate('Home')
+  };
+
+
+
   return (
-    <View>
-      <Text>DrawerNav</Text>
-    </View>
+    <Drawer.Navigator
+
+      drawerContent={props => {
+        return (
+          <DrawerContentScrollView {...props}>
+            <DrawerItemList {...props} />
+            <DrawerItem label="Logout" onPress={logout} />
+          </DrawerContentScrollView>
+        )
+      }}
+
+    >
+      <Drawer.Screen name="Vehicles" component={Vehicles} />
+      <Drawer.Screen name="Profile" component={MyProfile} />
+
+    </Drawer.Navigator>
   )
 }
