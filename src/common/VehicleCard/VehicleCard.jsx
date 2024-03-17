@@ -1,13 +1,19 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Card, Text } from 'react-native-paper';
 import { View, Image, StyleSheet } from 'react-native';
 import DesignButton from '../DesignButton/DesignButton';
-
+import DiologBox from '../../component/DiologBox/DiologBox';
 export default function VehicleCard({ img, brandName, moduleName, type, transmission, passengers, status, }) {
 
     const statusColor = status === 'Available Now' ? '#007ACC' : '#A50010';
+    const [visible , setVisible] = useState(false)
+
+    const hideDialog = () => {
+        setVisible(false)
+    }
 
     const information = () => {
+        setVisible(true)
         console.log('information');
     }
 
@@ -39,7 +45,9 @@ export default function VehicleCard({ img, brandName, moduleName, type, transmis
                         label={'More Information'}
                         onPress={information}
                     />
+                   
                 </View>
+                <DiologBox onDismiss={hideDialog}  visible={visible}/>
             </Card.Content>
         </Card>
     );
