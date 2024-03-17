@@ -1,13 +1,20 @@
-import { View, StyleSheet, ScrollView } from 'react-native';
-import React from 'react';
+import { View, StyleSheet, ScrollView ,ActivityIndicator} from 'react-native';
+import React, {useState} from 'react';
 import VehicleCard from '../../common/VehicleCard/VehicleCard';
 import rent_car_1 from '../../assets/img/rent_car_1.jpg';
 import rent_car_2 from '../../assets/img/rent_car_2.jpg';
 
 export default function Vehicles({navigation}) {
 
+  const [loading, setLoading] = useState(false);
+
   const moreInformation = () => {
-      navigation.navigate('Information')
+      setLoading(true);
+      setTimeout(() => {
+          console.log("Navigating to login page...");
+          navigation.navigate('Information')
+          setLoading(false);
+      }, 1000);
   }
 
   return (
@@ -45,4 +52,14 @@ const styles = StyleSheet.create({
   mainView: {
     padding: 10,
   },
+  loaderContainer: {
+    position: 'absolute',
+    bottom: 40,
+    zIndex: 1000,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    width: '100%',
+    height: '100%',
+},
 });
