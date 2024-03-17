@@ -3,14 +3,9 @@ import { Card, Text } from 'react-native-paper';
 import { View, Image, StyleSheet } from 'react-native';
 import DesignButton from '../DesignButton/DesignButton';
 
-export default function VehicleCard({ img, brandName, moduleName, type, transmission, passengers, status }) {
+export default function VehicleCard({ img, brandName, moduleName, type, transmission, passengers, status , onPress}) {
 
     const statusColor = status === 'Available Now' ? '#007ACC' : '#A50010';
-
-    const moreInformation = () => {
-        console.log("moreInformation");
-    }
-
 
     return (
         <Card style={styles.card}>
@@ -38,7 +33,7 @@ export default function VehicleCard({ img, brandName, moduleName, type, transmis
                         textColor={'white'}
                         rippleColor={'#1abc9c'}
                         label={'More Information'}
-                        onPress={moreInformation}
+                        onPress={onPress}
                     />
                 </View>
             </Card.Content>

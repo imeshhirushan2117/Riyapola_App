@@ -4,7 +4,11 @@ import VehicleCard from '../../common/VehicleCard/VehicleCard';
 import rent_car_1 from '../../assets/img/rent_car_1.jpg';
 import rent_car_2 from '../../assets/img/rent_car_2.jpg';
 
-export default function Vehicles() {
+export default function Vehicles({navigation}) {
+
+  const moreInformation = () => {
+      navigation.navigate('Information')
+  }
 
   return (
     <ScrollView>
@@ -17,6 +21,7 @@ export default function Vehicles() {
         transmission={'Auto'}
         passengers={'7'}
         status={'Available Now'}
+        onPress={moreInformation}
         />
       </View>
 
