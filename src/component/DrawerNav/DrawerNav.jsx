@@ -1,14 +1,23 @@
 import React from 'react'
+import { useState } from 'react';
 import Vehicles from '../../page/Vehicles/Vehicles';
 import MyProfile from '../../page/MyProfile/MyProfile';
 import { createDrawerNavigator, DrawerItem, DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
-
+import {ActivityIndicator , StyleSheet} from 'react-native';
 const Drawer = createDrawerNavigator();
 
 export default function DrawerNav({navigation}) {
 
+  const [loading, setLoading] = useState(false);
+
   const logout = () => {
-    navigation.navigate('Home')
+    setLoading(true);
+    setTimeout(() => {
+        console.log("Navigating to login page...");
+        navigation.navigate('Home')
+        setLoading(false);
+    }, 1000);
+
   };
 
 
@@ -23,6 +32,12 @@ export default function DrawerNav({navigation}) {
             <DrawerItem label="Logout" onPress={logout} />
           </DrawerContentScrollView>
         )
+
+        {loading && (
+          <View style={styles.loaderContainer}>
+              <ActivityIndicator size="large" color="white" />
+          </View>
+      )}
       }}
 
     >
@@ -32,3 +47,17 @@ export default function DrawerNav({navigation}) {
     </Drawer.Navigator>
   )
 }
+
+const styles = StyleSheet.create({
+  loaderContainer: {
+      position: 'absolute',
+      bottom: 40,
+      zIndex: 1000,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+      width: '100%',
+      height: '100%',
+  },
+
+});
