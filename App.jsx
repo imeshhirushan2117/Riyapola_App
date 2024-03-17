@@ -13,19 +13,18 @@ const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    // <NavigationContainer>
-    //   <Stack.Navigator>
-    //     <Stack.Screen name="Home" component={HomePage} options={{ headerShown: false }}/>
-    //     <Stack.Screen name="Login" component={LoginPage} options={{ headerShown: false }}/>
-    //     <Stack.Screen name="Register" component={RegisterPage} options={{ headerShown: false }}/>
-    //     <Stack.Screen name="Drawer" component={DrawerNav} options={{ headerShown: false }}/>
-    //     <Stack.Screen name="Information" component={CarInformation}/>
-    //   </Stack.Navigator>
-    // </NavigationContainer>
-
     <PaperProvider>
-      <Vehicles />
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Home" component={HomePage} options={{ headerShown: false }} />
+          <Stack.Screen name="Login" component={LoginPage} options={{ headerShown: false }} />
+          <Stack.Screen name="Register" component={RegisterPage} options={{ headerShown: false }} />
+          <Stack.Screen name="Drawer" component={DrawerNav} options={{ headerShown: false }} />
+        </Stack.Navigator>
+      </NavigationContainer>
     </PaperProvider>
-
+    // <PaperProvider>
+    //   <Vehicles />
+    // </PaperProvider>
   )
 }

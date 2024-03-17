@@ -132,13 +132,15 @@ const styles = StyleSheet.create({
     },
     textContainer: {
         paddingTop: 15,
-        width: '85%',
+        width: '85%',  
     },
     text: {
         fontSize: 15,
         fontStyle: 'italic',
         textAlign: 'left',
-        color: 'white'
+        color: 'white',
+        textDecorationLine:'underline',
+        letterSpacing:5
     },
 
     loaderContainer: {

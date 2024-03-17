@@ -131,7 +131,9 @@ const styles = StyleSheet.create({
         fontSize: 15,
         fontStyle: 'italic',
         textAlign: 'left',
-        color: 'white'
+        color: 'white',
+        textDecorationLine:'underline',
+        letterSpacing:3,
     },
     loaderContainer: {
         position: 'absolute',

@@ -3,7 +3,7 @@ import { Text } from 'react-native-paper';
 import { View, ScrollView, StyleSheet, Image } from 'react-native';
 import DesignButton from '../../common/DesignButton/DesignButton';
 
-import rent_car_1 from '../../assets/img/rent_car_1.jpg';
+import rent_car_2 from '../../assets/img/rent_car_2.jpg';
 
 export default function CarInformation() {
 
@@ -15,7 +15,7 @@ export default function CarInformation() {
     <ScrollView>
       <View style={styles.mainView}>
         <View style={styles.imageContainer}>
-          <Image source={rent_car_1} style={styles.image} />
+          <Image source={rent_car_2} style={styles.image} />
         </View>
 
         <View style={styles.carDetails}>
@@ -67,7 +67,7 @@ export default function CarInformation() {
 
 const styles = StyleSheet.create({
   mainView: {
-    padding: 15
+    padding:20
   },
   imageContainer: {
     alignItems: 'center',
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   btnView: {
-    padding: 10,
+    padding: 15,
   },
   btn: {
     borderRadius: 10,
