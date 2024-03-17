@@ -5,10 +5,10 @@ import DesignButton from '../../common/DesignButton/DesignButton';
 
 import rent_car_2 from '../../assets/img/rent_car_2.jpg';
 
-export default function CarInformation() {
+export default function CarInformation({navigation}) {
 
   const reservationNow = () => {
-    console.log('reservationNow');
+   console.log("hi utto");
   }
 
   return (

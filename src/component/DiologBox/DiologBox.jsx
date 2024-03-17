@@ -6,7 +6,7 @@ export default function DiologBox({visible,onDismiss }) {
     return (
         <Portal>
             <Dialog visible={visible} onDismiss={onDismiss}>
-               <CarInformation/>
+               <CarInformation />
             </Dialog>
         </Portal>
     )
