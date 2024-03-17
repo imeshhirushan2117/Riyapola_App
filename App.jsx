@@ -6,7 +6,6 @@ import DrawerNav from './src/component/DrawerNav/DrawerNav';
 import RegisterPage from './src/page/RegisterPage/RegisterPage';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Vehicles from './src/page/Vehicles/Vehicles';
 
 const Stack = createStackNavigator();
 
@@ -20,8 +19,6 @@ export default function App() {
         <Stack.Screen name="Drawer" component={DrawerNav} options={{ headerShown: false }}/>
       </Stack.Navigator>
     </NavigationContainer>
-
-    // <Vehicles/>
 
   )
 }
