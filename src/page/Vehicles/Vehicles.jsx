@@ -4,18 +4,9 @@ import VehicleCard from '../../common/VehicleCard/VehicleCard';
 import rent_car_1 from '../../assets/img/rent_car_1.jpg';
 import rent_car_2 from '../../assets/img/rent_car_2.jpg';
 
-export default function Vehicles({navigation}) {
+export default function Vehicles() {
 
-  const [loading, setLoading] = useState(false);
 
-  const moreInformation = () => {
-      setLoading(true);
-      setTimeout(() => {
-          console.log("Navigating to login page...");
-          navigation.navigate('Information')
-          setLoading(false);
-      }, 1000);
-  }
 
   return (
     <ScrollView>
@@ -28,7 +19,6 @@ export default function Vehicles({navigation}) {
         transmission={'Auto'}
         passengers={'7'}
         status={'Available Now'}
-        onPress={moreInformation}
         />
       </View>
 
@@ -52,14 +42,5 @@ const styles = StyleSheet.create({
   mainView: {
     padding: 10,
   },
-  loaderContainer: {
-    position: 'absolute',
-    bottom: 40,
-    zIndex: 1000,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    width: '100%',
-    height: '100%',
-},
+ 
 });
