@@ -30,7 +30,7 @@ export default function App() {
 
 
     // <PaperProvider>
-    //   <ReservationPage />
+    //   <CustomerView />
     // </PaperProvider>
   )
 }
