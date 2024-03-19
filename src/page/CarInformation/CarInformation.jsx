@@ -8,7 +8,7 @@ import rent_car_2 from '../../assets/img/rent_car_2.jpg';
 export default function CarInformation({navigation}) {
 
   const reservationNow = () => {
-   console.log("hi utto");
+   console.log("resavation now button ");
   }
 
   return (
