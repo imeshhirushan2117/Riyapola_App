@@ -20,6 +20,17 @@ export default function HomePage({navigation}) {
         }, 1000);
     };
 
+    const viewRentVehicles = () => {
+        setLoading(true);
+        setTimeout(() => {
+            console.log("Navigating to login page...");
+            navigation.navigate('Vehicles')
+
+
+            setLoading(false);
+        }, 1000);
+    }
+
     return (
         <>
             <View style={styles.mainView}>
@@ -37,6 +48,15 @@ export default function HomePage({navigation}) {
                         labelStyle={styles.buttonLabel}>
                         Go to Login Page
                     </Button>
+
+                    <Button
+                        mode="contained"
+                        onPress={viewRentVehicles}
+                        style={styles.buttonStyle}
+                        labelStyle={styles.buttonLabel}>
+                        Rent Vehicles
+                    </Button>
+
                 </View>
 
                 {loading && (

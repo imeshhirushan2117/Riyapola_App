@@ -39,9 +39,9 @@ export default function VehicleCard({ img, brandName, moduleName, type, transmis
                 <View style={styles.btnView}>
                     <DesignButton
                         style={styles.btn}
-                        buttonColor={'#C3555F'}
+                        buttonColor={'#005188'}
                         textColor={'white'}
-                        rippleColor={'#B22532'}
+                        rippleColor={'#007ACC'}
                         label={'More Information'}
                         onPress={information}
                     />
