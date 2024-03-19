@@ -7,7 +7,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { PaperProvider } from 'react-native-paper';
 import ReservationPage from './src/page/ReservationPage/ReservationPage';
-import ViewVehicle from './src/page/ViewVehicle/ViewVehicle';
+import CustomerView from './src/page/CustomerView/CustomerView';
 
 const Stack = createStackNavigator();
 
@@ -23,7 +23,7 @@ export default function App() {
           <Stack.Screen name="Drawer" component={DrawerNav} options={{ headerShown: false }} />
          
           <Stack.Screen name="Reservation" component={ReservationPage} />
-          <Stack.Screen name="Vehicles" component={ViewVehicle} />
+          <Stack.Screen name="CustomerVehicles" component={CustomerView} />
         </Stack.Navigator>
       </NavigationContainer>
     </PaperProvider>
