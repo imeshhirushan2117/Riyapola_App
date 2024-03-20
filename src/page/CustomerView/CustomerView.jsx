@@ -5,7 +5,7 @@ import DesignButton from '../../common/DesignButton/DesignButton';
 import CustomerDilogBox from '../../common/CustomerDilogBox/CustomerDilogBox'
 import rent_car_1 from '../../assets/img/rent_car_1.jpg';
 
-export default function CustomerView() {
+export default function CustomerView({navigation}) {
 
     const [visible , setVisible] = useState(false)
 
@@ -46,9 +46,8 @@ export default function CustomerView() {
                         label={'More Information Customer'}
                          onPress={information}
                     />
-                   
                 </View>
-                <CustomerDilogBox onDismiss={hideDialog}  visible={visible}/>
+                <CustomerDilogBox naviHome={()=>{navigation.navigate('Login')}} onDismiss={hideDialog}  visible={visible}/>
             </Card.Content>
         </Card>
   )

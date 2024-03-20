@@ -5,10 +5,11 @@ import { View, ScrollView, StyleSheet, Image } from 'react-native';
 import DesignButton from '../../common/DesignButton/DesignButton';
 import rent_car_2 from '../../assets/img/rent_car_2.jpg';
 
-export default function CustomerDilogBox({ visible, onDismiss}) {
+export default function CustomerDilogBox({ visible, onDismiss ,naviHome}) {
 
     const reservationNow = () => {
-        console.log("navigate login page");
+      naviHome();
+        onDismiss();
        }
 
     return (
