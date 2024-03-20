@@ -1,24 +1,70 @@
-import { Text, View, ScrollView, Image, StyleSheet, ImageBackground , ActivityIndicator } from 'react-native';
+import { Text, View, ScrollView, Image, StyleSheet, ImageBackground, ActivityIndicator } from 'react-native';
 import React, { useState } from 'react';
 import TextField from '../../common/TextField/TextField';
 import MainFooter from '../../component/MainFooter/MainFooter';
 import DesignButton from '../../common/DesignButton/DesignButton';
+import instance from '../../services/Axious'
+import { ALERT_TYPE, Dialog, AlertNotificationRoot, Toast } from 'react-native-alert-notification';
 
-export default function RegisterPage({navigation}) {
+
+export default function RegisterPage({ navigation }) {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const [loading, setLoading] = useState(false);
+
+
     const register = () => {
         setLoading(true);
         setTimeout(() => {
-            console.log("Navigating to login page...");
-            navigation.navigate('Login')
+            registerCustomer();
             setLoading(false);
-        }, 1000);      
+        }, 1000);
     }
+
+
+    const registerCustomer = () => {
+        if (firstName && lastName && email && password != null) {
+            console.log(firstName, lastName, email, password);
+            const data = {
+                firstName: firstName,
+                lastName: lastName,
+                userName: email,
+                password: password
+            }
+            instance.post('/customer/registerCustomer', data, {
+            })
+                .then(function (response) {
+                    console.log(response); 
+                    Dialog.show({
+                        type: ALERT_TYPE.SUCCESS,
+                        title: 'Warning',
+                        textBody: 'Register Customer Success!',
+                        button: 'close',
+                    })
+                    navigation.navigate('Login')
+                })
+                .catch(function (error) {
+                    console.log(error);
+                    Dialog.show({
+                        type: ALERT_TYPE.SUCCESS,
+                        title: 'Warning',
+                        textBody: 'Register Customer Un DANGER!',
+                        button: 'close',
+                    })
+                });
+        } else {
+            Dialog.show({
+                type: ALERT_TYPE.WARNING,
+                title: 'Warning',
+                textBody: 'Enter Valed Data',
+                button: 'close',
+            })
+        }
+    }
+
 
     const back = () => {
         setLoading(true);
@@ -26,7 +72,7 @@ export default function RegisterPage({navigation}) {
             console.log("Navigating to login page...");
             navigation.navigate('Login')
             setLoading(false);
-        }, 1000);    
+        }, 1000);
     }
 
     return (
@@ -40,29 +86,30 @@ export default function RegisterPage({navigation}) {
                 </View>
 
                 <View style={styles.mainView}>
-                        <View style={styles.imgView}>
-                            <Image source={require('../../assets/img/register.png')} />
+                    <View style={styles.imgView}>
+                        <Image source={require('../../assets/img/register.png')} />
+                    </View>
+
+                    <View style={styles.textFieldContainer}>
+                        <View style={styles.textView}>
+                            <TextField label={'First Name'} value={firstName} style={styles.textField} onChange={(val) => setFirstName(val)} />
                         </View>
 
-                        <View style={styles.textFieldContainer}>
-                            <View style={styles.textView}>
-                                <TextField label={'First Name'} value={firstName}  style={styles.textField} onChange={(val) => setFirstName(val)} />
-                            </View>
 
-
-                            <View style={styles.textView}>
-                                <TextField label={'Last Name'} value={lastName} style={styles.textField} onChange={(val) => setLastName(val)} />
-                            </View>
-
-                            <View style={styles.textView}>
-                                <TextField label={'Email'} value={email} style={styles.textField} onChange={(val) => setEmail(val)} />
-                            </View>
-
-                            <View style={styles.textView}>
-                                <TextField label={'Password'} value={password} type={'password'} style={styles.textField} onChange={(val) => setPassword(val)} />
-                            </View>
+                        <View style={styles.textView}>
+                            <TextField label={'Last Name'} value={lastName} style={styles.textField} onChange={(val) => setLastName(val)} />
                         </View>
 
+                        <View style={styles.textView}>
+                            <TextField label={'Email'} value={email} style={styles.textField} onChange={(val) => setEmail(val)} />
+                        </View>
+
+                        <View style={styles.textView}>
+                            <TextField label={'Password'} value={password} type={'password'} style={styles.textField} onChange={(val) => setPassword(val)} />
+                        </View>
+                    </View>
+
+                    <AlertNotificationRoot>
                         <View style={styles.buttonContainer} >
                             <DesignButton
                                 style={styles.btn}
@@ -74,16 +121,18 @@ export default function RegisterPage({navigation}) {
                             />
                         </View>
 
-                        {loading && (
+                    </AlertNotificationRoot>
+
+                    {loading && (
                         <View style={styles.loaderContainer}>
                             <ActivityIndicator size="large" color="white" />
                         </View>
                     )}
 
-                        <View style={styles.textContainer}>
-                            <Text style={styles.text} onPress={back}>Back</Text>
-                        </View>
+                    <View style={styles.textContainer}>
+                        <Text style={styles.text} onPress={back}>Back</Text>
                     </View>
+                </View>
             </ImageBackground>
 
             <View>
@@ -127,20 +176,20 @@ const styles = StyleSheet.create({
     },
     btn: {
         borderRadius: 4,
-        width: "100%",
+        width: 325,
         fontSize: 18,
     },
     textContainer: {
         paddingTop: 15,
-        width: '85%',  
+        width: '85%',
     },
     text: {
         fontSize: 15,
         fontStyle: 'italic',
         textAlign: 'left',
         color: 'white',
-        textDecorationLine:'underline',
-        letterSpacing:5
+        textDecorationLine: 'underline',
+        letterSpacing: 5
     },
 
     loaderContainer: {
@@ -154,7 +203,7 @@ const styles = StyleSheet.create({
         height: '100%',
     },
     topicView: {
-        paddingTop:50
+        paddingTop: 50
     },
 
     topicText: {
