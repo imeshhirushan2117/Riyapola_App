@@ -8,7 +8,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function LoginPage({ navigation }) {
     const [email, setEmail] = useState("imesh@gmail.com");
-    const [password, setPassword] = useState("12345");
+    const [password, setPassword] = useState("1234577");
     const [loading, setLoading] = useState(false);
 
     const signIn = () => {
@@ -42,7 +42,6 @@ export default function LoginPage({ navigation }) {
 
     const storeData = async (response) => {
         try {
-            console.log("login Success");
             await AsyncStorage.setItem('stmToken', response.data.token);
             const value = await AsyncStorage.getItem('stmToken');
 
