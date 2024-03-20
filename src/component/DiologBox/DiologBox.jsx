@@ -1,11 +1,60 @@
-import * as React from 'react';
+import * as React  from 'react';
 import { Dialog, Portal, } from 'react-native-paper';
 import { Text } from 'react-native-paper';
 import { View, ScrollView, StyleSheet, Image } from 'react-native';
 import DesignButton from '../../common/DesignButton/DesignButton';
 import rent_car_2 from '../../assets/img/rent_car_2.jpg';
+import instance from '../../services/Axious';
+import { useEffect, useState } from 'react';
 
 export default function DiologBox({ visible, onDismiss }) {
+
+    const [data , setData] = useState([])
+
+
+    useEffect(() => {
+        allVehicles()
+      }, [])
+
+
+    const allVehicles = () => {
+        instance({
+            method: 'get',
+            url: '/customer/customerVeiledVehicle',
+          })
+            .then(function (response) {
+              const array = [];
+      
+              response.data.forEach(val => {
+                array.push({
+                  id: val.vehicleId,
+                  brandName: val.brandName,
+                  moduleName: val.moduleName,
+                  passengers: val.passenger,
+                  fuelType: val.fuelType,
+                  trType: val.transmissionType,
+                  limit: val.dailyLimitKilometers,
+                  extraKm: val.extraKm,
+                })
+              })
+      
+              setData(array)
+              console.log("Array hutto : " , array);
+      
+            }).catch(err => {
+              console.log(err);
+            })
+    }
+
+// const brandName = "ABC"
+// const moduleName = "ABC"
+// const fuelType = "ABC"
+// const trType = "ABC"
+// const passengers = "ABC"
+// const drPrice = "ABC"
+// const limit = "ABC"
+// const extraKm = "ABC"
+
 
 
     const reservationNow = () => {
@@ -15,8 +64,6 @@ export default function DiologBox({ visible, onDismiss }) {
     return (
         <Portal>
             <Dialog visible={visible} onDismiss={onDismiss}>
-
-
                 <ScrollView>
                     <View style={styles.mainView}>
                         <View style={styles.imageContainer}>
@@ -24,34 +71,31 @@ export default function DiologBox({ visible, onDismiss }) {
                         </View>
 
                         <View style={styles.carDetails}>
-                            <Text variant="headlineLarge" style={styles.carName}>MITSUBISHI MONTERO SPORT</Text>
+                            <Text variant="headlineLarge" style={styles.carName}>{data.brandName} {data.moduleName}</Text>
                             <View style={styles.detailItem}>
                                 <Text variant="titleMedium" style={styles.detailLabel}>Fuel Type:</Text>
-                                <Text variant="titleMedium">Diesel</Text>
+                                <Text variant="titleMedium">{data.fuelType}</Text>
                             </View>
                             <View style={styles.detailItem}>
                                 <Text variant="titleMedium" style={styles.detailLabel}>Transmission type:</Text>
-                                <Text variant="titleMedium">Auto</Text>
+                                <Text variant="titleMedium">{data.trType}</Text>
                             </View>
                             <View style={styles.detailItem}>
                                 <Text variant="titleMedium" style={styles.detailLabel}>No of passengers:</Text>
-                                <Text variant="titleMedium">7</Text>
+                                <Text variant="titleMedium">{data.passengers}</Text>
                             </View>
-                            <View style={styles.detailItem}>
-                                <Text variant="titleMedium" style={styles.detailLabel}>Kilometers Traveled:</Text>
-                                <Text variant="titleMedium">53000Km</Text>
-                            </View>
+
                             <View style={styles.detailItem}>
                                 <Text variant="titleMedium" style={styles.detailLabel}>Daily Rental Price:</Text>
-                                <Text variant="titleMedium">Rs.5000.00</Text>
+                                <Text variant="titleMedium">{data.drPrice}</Text>
                             </View>
                             <View style={styles.detailItem}>
                                 <Text variant="titleMedium" style={styles.detailLabel}>Daily Limit Kilometers:</Text>
-                                <Text variant="titleMedium">100Km</Text>
+                                <Text variant="titleMedium">{data.limit}</Text>
                             </View>
                             <View style={styles.detailItem}>
                                 <Text variant="titleMedium" style={styles.detailLabel}>Extra Km:</Text>
-                                <Text variant="titleMedium">Rs.40.00</Text>
+                                <Text variant="titleMedium">{data.extraKm}</Text>
                             </View>
                         </View>
 

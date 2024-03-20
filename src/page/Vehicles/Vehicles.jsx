@@ -45,15 +45,6 @@ export default function Vehicles() {
   return (
     <>
       <View style={styles.mainView}>
-        {/* <VehicleCard
-          img={rent_car_1}
-          brandName={'MITSUBISHI'}
-          moduleName={'MONTERO SPORT'}
-          type={'Diesel'}
-          transmission={'Auto'}
-          passengers={'7'}
-          status={'Not Available Now'} /> */}
-
         <FlatList
           data={data}
           renderItem={({ item }) => (

@@ -57,7 +57,7 @@ export default function App() {
     </>
 
     // <PaperProvider>
-    //   <Vehicles />
+    //   <CustomerView />
     // </PaperProvider>
   )
 }
