@@ -12,10 +12,14 @@ export default function LoginPage({ navigation }) {
     const signIn = () => {
         setLoading(true);
         setTimeout(() => {
-            console.log("Navigating to login page...");
+            customerSignIn()
             navigation.navigate('Drawer')
             setLoading(false);
         }, 1000);
+    }
+
+    const customerSignIn = () => {
+
     }
 
     const register = () => {
@@ -132,8 +136,6 @@ const styles = StyleSheet.create({
         fontStyle: 'italic',
         textAlign: 'left',
         color: 'white',
-        textDecorationLine:'underline',
-        letterSpacing:3,
     },
     loaderContainer: {
         position: 'absolute',

@@ -121,6 +121,10 @@ export default function RegisterPage({ navigation }) {
                             />
                         </View>
 
+                        <View style={styles.textContainer}>
+                        <Text style={styles.text} onPress={back}>Back</Text>
+                    </View>
+
                     </AlertNotificationRoot>
 
                     {loading && (
@@ -129,9 +133,7 @@ export default function RegisterPage({ navigation }) {
                         </View>
                     )}
 
-                    <View style={styles.textContainer}>
-                        <Text style={styles.text} onPress={back}>Back</Text>
-                    </View>
+                   
                 </View>
             </ImageBackground>
 
@@ -180,16 +182,14 @@ const styles = StyleSheet.create({
         fontSize: 18,
     },
     textContainer: {
-        paddingTop: 15,
         width: '85%',
+        marginTop:14
     },
     text: {
         fontSize: 15,
         fontStyle: 'italic',
         textAlign: 'left',
         color: 'white',
-        textDecorationLine: 'underline',
-        letterSpacing: 5
     },
 
     loaderContainer: {
