@@ -71,6 +71,7 @@ const styles = StyleSheet.create({
     },
     detailsContainer: {
         padding: 10,
+       backgroundColor:"red"
     },
     brandName: {
         fontSize: 20,
@@ -83,6 +84,7 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 16,
         marginBottom: 3,
+
     },
     statusContainer: {
         alignItems: 'center',

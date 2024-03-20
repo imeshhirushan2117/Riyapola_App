@@ -36,28 +36,28 @@ export default function App() {
     }
   };
   return (
-    // <>
-    //   <PaperProvider>
-    //     <NavigationContainer>
-    //       <Stack.Navigator>
-    //         {login ?
-    //           <Stack.Screen name="Drawer1" component={DrawerNav} options={{ headerShown: false }} />
-    //           :
-    //           <Stack.Screen name="Home1" component={HomePage} options={{ headerShown: false }} />
-    //         }
-    //         <Stack.Screen name="Home" component={HomePage} options={{ headerShown: false }} />
-    //         <Stack.Screen name="Login" component={LoginPage} options={{ headerShown: false }} />
-    //         <Stack.Screen name="Drawer" component={DrawerNav} options={{ headerShown: false }} />
-    //         <Stack.Screen name="Register" component={RegisterPage} options={{ headerShown: false }} />
-    //         <Stack.Screen name="Reservation" component={ReservationPage} />
-    //         <Stack.Screen name="CustomerVehicles" component={CustomerView} />
-    //       </Stack.Navigator>
-    //     </NavigationContainer>
-    //   </PaperProvider>
-    // </>
+    <>
+      <PaperProvider>
+        <NavigationContainer>
+          <Stack.Navigator>
+            {login ?
+              <Stack.Screen name="Drawer1" component={DrawerNav} options={{ headerShown: false }} />
+              :
+              <Stack.Screen name="Home1" component={HomePage} options={{ headerShown: false }} />
+            }
+            <Stack.Screen name="Home" component={HomePage} options={{ headerShown: false }} />
+            <Stack.Screen name="Login" component={LoginPage} options={{ headerShown: false }} />
+            <Stack.Screen name="Drawer" component={DrawerNav} options={{ headerShown: false }} />
+            <Stack.Screen name="Register" component={RegisterPage} options={{ headerShown: false }} />
+            <Stack.Screen name="Reservation" component={ReservationPage} />
+            <Stack.Screen name="CustomerVehicles" component={CustomerView} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </PaperProvider>
+    </>
 
-    <PaperProvider>
-      <Vehicles />
-    </PaperProvider>
+    // <PaperProvider>
+    //   <Vehicles />
+    // </PaperProvider>
   )
 }

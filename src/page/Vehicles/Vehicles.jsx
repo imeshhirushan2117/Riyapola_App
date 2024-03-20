@@ -6,11 +6,7 @@ import rent_car_2 from '../../assets/img/rent_car_2.jpg';
 import instance from '../../services/Axious'
 
 export default function Vehicles() {
-
-
   const [data, setData] = useState([])
-
-
   useEffect(() => {
     getAllVehicle();
   }, [])
