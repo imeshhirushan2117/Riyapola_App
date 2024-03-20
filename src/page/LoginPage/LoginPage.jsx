@@ -3,30 +3,60 @@ import React, { useState } from 'react';
 import TextField from '../../common/TextField/TextField';
 import MainFooter from '../../component/MainFooter/MainFooter';
 import DesignButton from '../../common/DesignButton/DesignButton';
+import instance from '../../services/Axious'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function LoginPage({ navigation }) {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("imesh@gmail.com");
+    const [password, setPassword] = useState("12345");
     const [loading, setLoading] = useState(false);
 
     const signIn = () => {
         setLoading(true);
         setTimeout(() => {
             customerSignIn()
-            navigation.navigate('Drawer')
             setLoading(false);
         }, 1000);
     }
 
     const customerSignIn = () => {
-
+        if (email && password != null) {
+            instance.post('/customer/customerLogin', {
+                userName: email,
+                password: password
+            })
+                .then(function (response) {
+                    console.log(response.data);
+                    if (response.data.token != null) {
+                        storeData(response);
+                    }
+                })
+                .catch(function (error) {
+                    console.log("error " + error);
+                    console.log("login Un Success");
+                });
+        } else {
+            console.log("enter valed Data ");
+        }
     }
+
+    const storeData = async (response) => {
+        try {
+            console.log("login Success");
+            await AsyncStorage.setItem('stmToken', response.data.token);
+            const value = await AsyncStorage.getItem('stmToken');
+
+            console.log("save token ===== " , value);
+            console.log("storeData method : " + response.data.token);
+            navigation.navigate('Drawer')
+        } catch (e) {
+        }
+    };
 
     const register = () => {
 
         setLoading(true);
         setTimeout(() => {
-            console.log("Navigating to login page...");
             navigation.navigate('Register')
             setLoading(false);
         }, 1000);
@@ -149,7 +179,7 @@ const styles = StyleSheet.create({
     },
 
     topicView: {
-        paddingTop:50
+        paddingTop: 50
     },
 
     topicText: {

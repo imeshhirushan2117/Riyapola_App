@@ -14,7 +14,6 @@ export default function HomePage({navigation}) {
     const goToLoginPage = () => {
         setLoading(true);
         setTimeout(() => {
-            console.log("Navigating to login page...");
             navigation.navigate('Login')
             setLoading(false);
         }, 1000);
