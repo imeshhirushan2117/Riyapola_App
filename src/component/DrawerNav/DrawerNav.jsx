@@ -4,6 +4,9 @@ import Vehicles from '../../page/Vehicles/Vehicles';
 import MyProfile from '../../page/MyProfile/MyProfile';
 import { createDrawerNavigator, DrawerItem, DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
 import {ActivityIndicator , StyleSheet} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { ALERT_TYPE, Dialog, AlertNotificationRoot, Toast } from 'react-native-alert-notification';
+
 const Drawer = createDrawerNavigator();
 
 export default function DrawerNav({navigation}) {
@@ -13,12 +16,27 @@ export default function DrawerNav({navigation}) {
   const logout = () => {
     setLoading(true);
     setTimeout(() => {
-        console.log("Navigating to login page...");
-        navigation.navigate('Home')
+        removeValue()
         setLoading(false);
     }, 1000);
 
   };
+
+  removeValue = async () => {
+    try {
+      await AsyncStorage.removeItem('stmToken')
+      Dialog.show({
+        type: ALERT_TYPE.SUCCESS,
+        title: 'Success',
+        textBody: 'Log Out Success !',
+        button: 'close',
+      })
+      navigation.navigate('Home')
+    } catch(e) {
+
+    }
+   
+  }
 
 
 
@@ -27,9 +45,13 @@ export default function DrawerNav({navigation}) {
 
       drawerContent={props => {
         return (
+
+
           <DrawerContentScrollView {...props}>
             <DrawerItemList {...props} />
+            <AlertNotificationRoot>
             <DrawerItem label="Logout" onPress={logout} />
+            </AlertNotificationRoot>
           </DrawerContentScrollView>
         )
 
