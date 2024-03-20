@@ -5,7 +5,6 @@ import DesignButton from '../DesignButton/DesignButton';
 import DiologBox from '../../component/DiologBox/DiologBox';
 export default function VehicleCard({ img, brandName, moduleName, type, transmission, passengers, status, }) {
 
-    const statusColor = status === 'Available Now' ? '#007ACC' : '#A50010';
     const [visible , setVisible] = useState(false)
 
     const hideDialog = () => {
@@ -29,11 +28,11 @@ export default function VehicleCard({ img, brandName, moduleName, type, transmis
                     <Text style={styles.moduleName}>{moduleName}</Text>
                     <Text style={styles.text}>Fuel Type: {type}</Text>
                     <Text style={styles.text}>Transmission: {transmission}</Text>
-                    <Text style={styles.text}>Capacity: {passengers} passengers</Text>
+                    <Text style={styles.text}>Capacity: {passengers} Passengers</Text>
                 </View>
 
                 <View style={styles.statusContainer}>
-                    <Text style={[styles.status, { color: statusColor }]}>{status}</Text>
+                    <Text style={styles.status}>{status}</Text>
                 </View>
 
                 <View style={styles.btnView}>
@@ -90,8 +89,9 @@ const styles = StyleSheet.create({
         marginTop: 6,
     },
     status: {
-        fontSize: 18,
+        fontSize: 20,
         fontWeight: 'bold',
+        color: '#022E1F',
     },
     btnView: {
         padding: 10,

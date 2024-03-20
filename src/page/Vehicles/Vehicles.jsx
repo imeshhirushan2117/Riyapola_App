@@ -1,29 +1,83 @@
-import { View, StyleSheet, ScrollView ,ActivityIndicator} from 'react-native';
-import React, {useState} from 'react';
+import { View, StyleSheet, ScrollView, ActivityIndicator, FlatList } from 'react-native';
+import React, { useState, useEffect } from 'react';
 import VehicleCard from '../../common/VehicleCard/VehicleCard';
 import rent_car_1 from '../../assets/img/rent_car_1.jpg';
 import rent_car_2 from '../../assets/img/rent_car_2.jpg';
+import instance from '../../services/Axious'
 
 export default function Vehicles() {
 
 
+  const [data, setData] = useState([])
+
+
+  useEffect(() => {
+    getAllVehicle();
+  }, [])
+
+  const getAllVehicle = () => {
+    instance({
+      method: 'get',
+      url: '/customer/customerVeiledVehicle',
+    })
+      .then(function (response) {
+        const array = [];
+
+        console.log(response);
+
+        response.data.forEach(val => {
+          array.push({
+            id: val.vehicleId,
+            brandName: val.brandName,
+            moduleName: val.moduleName,
+            passengers: val.passenger,
+            type: val.fuelType,
+            transmission: val.transmissionType,
+            passengers: val.passengers,
+            status: val.status,
+          })
+        })
+
+        setData(array)
+
+      }).catch(err => {
+        console.log(err);
+      })
+  }
+
 
   return (
-    <ScrollView>
+    <>
       <View style={styles.mainView}>
-        <VehicleCard
-        img={rent_car_2}
-        brandName={'MITSUBISHI'}
-        moduleName={'MONTERO SPORT'}
-        type={'Diesel'}
-        transmission={'Auto'}
-        passengers={'7'}
-        status={'Available Now'}
+        {/* <VehicleCard
+          img={rent_car_1}
+          brandName={'MITSUBISHI'}
+          moduleName={'MONTERO SPORT'}
+          type={'Diesel'}
+          transmission={'Auto'}
+          passengers={'7'}
+          status={'Not Available Now'} /> */}
+
+        <FlatList
+          data={data}
+          renderItem={({ item }) => (
+            <VehicleCard
+              img={item.rent_car_1}
+              brandName={item.brandName}
+              moduleName={item.moduleName}
+              type={item.type}
+              transmission={item.transmission}
+              passengers={item.passengers}
+              status={item.status}
+            />
+          )}
         />
+
       </View>
 
 
-      <View style={styles.mainView}>
+
+      {/* <View style={styles.mainView}>
         <VehicleCard
         img={rent_car_1}
         brandName={'MITSUBISHI'}
@@ -33,8 +87,8 @@ export default function Vehicles() {
         passengers={'7'}
         status={'Not Available Now'}
         />
-      </View>
-    </ScrollView>
+      </View> */}
+    </>
   );
 }
 
@@ -42,5 +96,5 @@ const styles = StyleSheet.create({
   mainView: {
     padding: 10,
   },
- 
+
 });
