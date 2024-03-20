@@ -24,11 +24,29 @@ export default function VehicleCard({ img, brandName, moduleName, type, transmis
                 </View>
 
                 <View style={styles.detailsContainer}>
-                    <Text style={styles.brandName}>{brandName}</Text>
-                    <Text style={styles.moduleName}>{moduleName}</Text>
-                    <Text style={styles.text}>Fuel Type: {type}</Text>
-                    <Text style={styles.text}>Transmission: {transmission}</Text>
-                    <Text style={styles.text}>Capacity: {passengers} Passengers</Text>
+                    <View style={styles.nameView}>
+                        <Text style={styles.brandName}>{brandName} {moduleName}</Text>
+                    </View>
+
+                    <View style={styles.commonView}>
+                        <Text style={styles.text}>Fuel Type :</Text>
+                        <Text style={styles.text2}>{type}</Text>
+                    </View>
+
+                    <View style={styles.commonView}>
+
+                        <Text style={styles.text}>Transmission :</Text>
+                        <Text style={styles.text2}>{transmission}</Text>
+                    </View>
+
+
+                    <View style={styles.commonView}>
+                        <Text style={styles.text}>Capacity :</Text>
+                        <Text style={styles.text2}> {passengers} Passengers</Text>
+                    </View>
+
+
+
                 </View>
 
                 <View style={styles.statusContainer}>
@@ -76,25 +94,36 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     brandName: {
-        fontSize: 18,
+        fontSize: 20,
         fontWeight: 'bold',
         marginBottom: 10,
     },
     moduleName: {
-        fontSize: 16,
+        fontSize: 18,
         color: '#333',
         marginBottom: 10,
     },
     detailText: {
         fontSize: 14,
         color: '#666',
-        marginBottom: 10, 
+        marginBottom: 10,
     },
 
     text: {
-        fontSize: 16,
+        fontSize: 17,
         marginBottom: 3,
+        fontWeight: 'bold',
+    },
 
+    commonView: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent:'space-between'
+    },
+
+    text2: {
+      
+        fontSize: 17
     },
     statusContainer: {
         alignItems: 'center',
@@ -113,4 +142,10 @@ const styles = StyleSheet.create({
         width: "100%",
         fontSize: 18,
     },
+    nameView: {
+        display: 'flex',
+        alignItems: 'center',
+        padding: 10,
+    },
 });
+
