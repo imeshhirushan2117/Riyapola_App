@@ -25,12 +25,6 @@ export default function DrawerNav({navigation}) {
   removeValue = async () => {
     try {
       await AsyncStorage.removeItem('stmToken')
-      Dialog.show({
-        type: ALERT_TYPE.SUCCESS,
-        title: 'Success',
-        textBody: 'Log Out Success !',
-        button: 'close',
-      })
       navigation.navigate('Home')
     } catch(e) {
 

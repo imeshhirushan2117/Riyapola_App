@@ -10,7 +10,7 @@ import ReservationPage from './src/page/ReservationPage/ReservationPage';
 import CustomerView from './src/page/CustomerView/CustomerView';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Vehicles from './src/page/Vehicles/Vehicles';
-
+import MyProfile from './src/page/MyProfile/MyProfile';
 
 const Stack = createStackNavigator();
 export default function App() {
@@ -57,7 +57,7 @@ export default function App() {
     </>
 
     // <PaperProvider>
-    //   <Vehicles />
+    //   <MyProfile />
     // </PaperProvider>
   )
 }
