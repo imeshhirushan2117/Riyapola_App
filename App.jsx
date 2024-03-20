@@ -13,7 +13,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Stack = createStackNavigator();
 export default function App() {
-  
+
   const [login, setLogin] = useState(false)
 
   useEffect(() => {
@@ -23,12 +23,9 @@ export default function App() {
 
   const checkLogin = async () => {
     const value = await AsyncStorage.getItem('stmToken');
-    console.log("login token key ======== @@@ ", value);
     try {
       if (value !== null) {
         setLogin(true)
-        console.log("login Ok");
-        console.log("@$$ ", login);
       } else {
         setLogin(false)
       }

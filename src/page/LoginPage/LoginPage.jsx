@@ -5,10 +5,12 @@ import MainFooter from '../../component/MainFooter/MainFooter';
 import DesignButton from '../../common/DesignButton/DesignButton';
 import instance from '../../services/Axious'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { ALERT_TYPE, Dialog, AlertNotificationRoot, Toast } from 'react-native-alert-notification';
+
 
 export default function LoginPage({ navigation }) {
     const [email, setEmail] = useState("imesh@gmail.com");
-    const [password, setPassword] = useState("1234577");
+    const [password, setPassword] = useState("12345");
     const [loading, setLoading] = useState(false);
 
     const signIn = () => {
@@ -36,7 +38,12 @@ export default function LoginPage({ navigation }) {
                     console.log("login Un Success");
                 });
         } else {
-            console.log("enter valed Data ");
+            Dialog.show({
+                type: ALERT_TYPE.WARNING,
+                title: 'Warning',
+                textBody: 'Enter Valed Data',
+                button: 'close',
+            })
         }
     }
 
@@ -44,11 +51,10 @@ export default function LoginPage({ navigation }) {
         try {
             await AsyncStorage.setItem('stmToken', response.data.token);
             const value = await AsyncStorage.getItem('stmToken');
-
-            console.log("save token ===== " , value);
-            console.log("storeData method : " + response.data.token);
+            console.log(value);
             navigation.navigate('Drawer')
         } catch (e) {
+            console.log(e," login failed");
         }
     };
 
@@ -89,26 +95,30 @@ export default function LoginPage({ navigation }) {
                         </View>
                     </View>
 
-                    <View style={styles.buttonContainer} >
-                        <DesignButton
-                            style={styles.btn}
-                            buttonColor={'#A50010'}
-                            textColor={'white'}
-                            rippleColor={'#64000A'}
-                            label={'Sign In'}
-                            onPress={signIn}
-                        />
-                    </View>
+                    <AlertNotificationRoot>
+
+                        <View style={styles.buttonContainer} >
+                            <DesignButton
+                                style={styles.btn}
+                                buttonColor={'#A50010'}
+                                textColor={'white'}
+                                rippleColor={'#64000A'}
+                                label={'Sign In'}
+                                onPress={signIn}
+                            />
+                        </View>
+
+                        <View style={styles.textContainer}>
+                            <Text style={styles.text} onPress={register}>Register Customer</Text>
+                        </View>
+
+                    </AlertNotificationRoot>
 
                     {loading && (
                         <View style={styles.loaderContainer}>
                             <ActivityIndicator size="large" color="white" />
                         </View>
                     )}
-
-                    <View style={styles.textContainer}>
-                        <Text style={styles.text} onPress={register}>Register Customer</Text>
-                    </View>
                 </View>
             </ImageBackground>
 
@@ -153,7 +163,7 @@ const styles = StyleSheet.create({
     },
     btn: {
         borderRadius: 4,
-        width: "100%",
+        width: 325,
         fontSize: 18,
     },
     textContainer: {
