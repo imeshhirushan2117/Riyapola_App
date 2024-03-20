@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Card, Text } from 'react-native-paper';
 import { View, Image, StyleSheet } from 'react-native';
 import DesignButton from '../DesignButton/DesignButton';
 import DiologBox from '../../component/DiologBox/DiologBox';
 export default function VehicleCard({ img, brandName, moduleName, type, transmission, passengers, status, }) {
 
-    const [visible , setVisible] = useState(false)
+    const [visible, setVisible] = useState(false)
 
     const hideDialog = () => {
         setVisible(false)
@@ -44,9 +44,9 @@ export default function VehicleCard({ img, brandName, moduleName, type, transmis
                         label={'More Information'}
                         onPress={information}
                     />
-                   
+
                 </View>
-                <DiologBox onDismiss={hideDialog}  visible={visible}/>
+                <DiologBox onDismiss={hideDialog} visible={visible} />
             </Card.Content>
         </Card>
     );
@@ -70,17 +70,27 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 10,
     },
     detailsContainer: {
+        backgroundColor: '#f0f0f0',
         padding: 10,
-       backgroundColor:"red"
+        borderRadius: 8,
+        marginBottom: 10,
     },
     brandName: {
-        fontSize: 20,
+        fontSize: 18,
         fontWeight: 'bold',
+        marginBottom: 10,
     },
     moduleName: {
-        fontSize: 18,
-        marginBottom: 5,
+        fontSize: 16,
+        color: '#333',
+        marginBottom: 10,
     },
+    detailText: {
+        fontSize: 14,
+        color: '#666',
+        marginBottom: 10, 
+    },
+
     text: {
         fontSize: 16,
         marginBottom: 3,
