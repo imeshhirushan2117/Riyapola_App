@@ -3,21 +3,22 @@ import { useState } from 'react';
 import Vehicles from '../../page/Vehicles/Vehicles';
 import MyProfile from '../../page/MyProfile/MyProfile';
 import { createDrawerNavigator, DrawerItem, DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
-import {ActivityIndicator , StyleSheet} from 'react-native';
+import { ActivityIndicator, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ALERT_TYPE, Dialog, AlertNotificationRoot, Toast } from 'react-native-alert-notification';
+import HomePage from '../../page/HomePage/HomePage';
 
 const Drawer = createDrawerNavigator();
 
-export default function DrawerNav({navigation}) {
+export default function DrawerNav({ navigation }) {
 
   const [loading, setLoading] = useState(false);
 
   const logout = () => {
     setLoading(true);
     setTimeout(() => {
-        removeValue()
-        setLoading(false);
+      removeValue()
+      setLoading(false);
     }, 1000);
 
   };
@@ -25,11 +26,20 @@ export default function DrawerNav({navigation}) {
   removeValue = async () => {
     try {
       await AsyncStorage.removeItem('stmToken')
-      navigation.navigate('Home')
-    } catch(e) {
+     const value =  await AsyncStorage.getItem('stmToken')
+
+if(value === null){
+  navigation.navigate('Home')
+  console.log('=============',value);
+}else{
+  console.log("fuck");
+}
+
+      
+    } catch (e) {
 
     }
-   
+
   }
 
 
@@ -44,21 +54,27 @@ export default function DrawerNav({navigation}) {
           <DrawerContentScrollView {...props}>
             <DrawerItemList {...props} />
             <AlertNotificationRoot>
-            <DrawerItem label="Logout" onPress={logout} />
+              <DrawerItem label="Logout" onPress={logout} />
             </AlertNotificationRoot>
           </DrawerContentScrollView>
         )
 
-        {loading && (
-          <View style={styles.loaderContainer}>
+        {
+          loading && (
+            <View style={styles.loaderContainer}>
               <ActivityIndicator size="large" color="white" />
-          </View>
-      )}
+            </View>
+          )
+        }
       }}
 
     >
       <Drawer.Screen name="Vehicles" component={Vehicles} />
       <Drawer.Screen name="Profile" component={MyProfile} />
+      <Drawer.Screen name="Home" options={{
+        drawerItemStyle: { display: 'none' },
+        headerShown: false
+      }} component={HomePage} />
 
     </Drawer.Navigator>
   )
@@ -66,14 +82,14 @@ export default function DrawerNav({navigation}) {
 
 const styles = StyleSheet.create({
   loaderContainer: {
-      position: 'absolute',
-      bottom: 40,
-      zIndex: 1000,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: 'rgba(0, 0, 0, 0.5)',
-      width: '100%',
-      height: '100%',
+    position: 'absolute',
+    bottom: 40,
+    zIndex: 1000,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    width: '100%',
+    height: '100%',
   },
 
 });
