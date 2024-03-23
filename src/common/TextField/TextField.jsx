@@ -3,7 +3,7 @@ import React from 'react'
 import { TextInput } from 'react-native-paper';
 
 
-export default function TextField({value,onChange ,style , label, type}) {
+export default function TextField({value,onChange ,style , label, type, disabled}) {
   return (
        <TextInput
        label={label}
@@ -14,6 +14,7 @@ export default function TextField({value,onChange ,style , label, type}) {
        onChangeText={onChange}
        style={style}
        secureTextEntry={type === 'password'}
+       disabled={disabled}
     />
   )
 }

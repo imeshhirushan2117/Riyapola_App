@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { View, ScrollView, StyleSheet } from 'react-native';
-import { Avatar } from 'react-native-paper';
+import { View, ScrollView, StyleSheet, TouchableOpacity  } from 'react-native';
+import { Avatar, Button } from 'react-native-paper';
 import my_Profile from '.././../assets/img/myProfile.png';
 import TextField from '../../common/TextField/TextField';
 import DesignButton from '../../common/DesignButton/DesignButton';
@@ -17,6 +17,8 @@ export default function MyProfile() {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
 
+  const [diseble, setDiseble] = useState(true)
+
   const clear = () => {
     setFirstName('');
     setLastName('');
@@ -32,6 +34,14 @@ export default function MyProfile() {
     // Implement update functionality
   };
 
+  const editBtn = () => {
+    if (diseble == true) {
+      setDiseble(false)
+    } else {
+      setDiseble(true)
+    }
+  }
+
   return (
     <ScrollView contentContainerStyle={styles.scrollView}>
 
@@ -45,22 +55,23 @@ export default function MyProfile() {
 
         <View style={styles.formContainer}>
           <View style={styles.column}>
-            <TextField label={'First Name'} value={firstName} style={styles.textField} onChange={setFirstName} />
-            <TextField label={'Last Name'} value={lastName} style={styles.textField} onChange={setLastName} />
-            <TextField label={'Email'} type={'email'} value={email} style={styles.textField} onChange={setEmail} />
-            <TextField label={'Contact'} value={contact} style={styles.textField} onChange={setContact} />
+            <TextField label={'First Name'} value={firstName} style={styles.textField} onChange={setFirstName} disabled={diseble} />
+            <TextField label={'Last Name'} value={lastName} style={styles.textField} onChange={setLastName} disabled={diseble} />
+            <TextField label={'Email'} type={'email'} value={email} style={styles.textField} onChange={setEmail} disabled={diseble} />
+            <TextField label={'Contact'} value={contact} style={styles.textField} onChange={setContact} disabled={diseble} />
           </View>
           <View style={styles.column}>
-            <TextField label={'Nic'} value={nic} style={styles.textField} onChange={setNic} />
-            <TextField label={'Address'} value={address} style={styles.textField} onChange={setAddress} />
-            <TextField label={'User Name'} value={userName} style={styles.textField} onChange={setUserName} />
-            <TextField label={'Password'} type={'password'} value={password} style={styles.textField} onChange={setPassword} />
+            <TextField label={'Nic'} value={nic} style={styles.textField} onChange={setNic} disabled={diseble} />
+            <TextField label={'Address'} value={address} style={styles.textField} onChange={setAddress} disabled={diseble} />
+            <TextField label={'User Name'} value={userName} style={styles.textField} onChange={setUserName} disabled={diseble} />
+            <TextField label={'Password'} type={'password'} value={password} style={styles.textField} onChange={setPassword} disabled={diseble} />
           </View>
         </View>
 
-
         <View style={styles.editIcon}>
-          <Image source={edit_icon} style={styles.editIconImage} />
+          <TouchableOpacity onPress={editBtn}>
+            <Image source={edit_icon} style={styles.editIconImage} />
+          </TouchableOpacity>
         </View>
 
         <View style={styles.btnContainer}>
@@ -143,4 +154,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
   },
+  editIconBtn: {
+    width: '100%'
+  }
 });
