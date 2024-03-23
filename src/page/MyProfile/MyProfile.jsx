@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import { View, ScrollView, StyleSheet, TouchableOpacity  } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import { Avatar, Button } from 'react-native-paper';
 import my_Profile from '.././../assets/img/myProfile.png';
 import TextField from '../../common/TextField/TextField';
 import DesignButton from '../../common/DesignButton/DesignButton';
 import edit_icon from '../../assets/img/edit_icon.png'
 import { Image } from 'react-native';
+import instance from '../../services/Axious';
 
 export default function MyProfile() {
   const [firstName, setFirstName] = useState('');
@@ -30,9 +31,24 @@ export default function MyProfile() {
     setPassword('');
   };
 
+  useEffect(() => {
+    getCustomerId()
+  }, [])
+
   const update = () => {
     // Implement update functionality
   };
+
+  const getCustomerId = (id) => {
+    instance.get('/customer/getCustomer/' + id, {
+      params: {
+        customerId: id,
+      }
+    })
+      .then(function (response) {
+        console.log(response);
+      })
+  }
 
   const editBtn = () => {
     if (diseble == true) {
@@ -47,8 +63,6 @@ export default function MyProfile() {
 
 
       <View style={styles.mainContainer}>
-
-
         <View style={styles.avatarContainer}>
           <Avatar.Image size={100} source={my_Profile} style={styles.avatarImg} />
         </View>
