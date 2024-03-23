@@ -17,45 +17,17 @@ export default function DiologBox({ visible, onDismiss }) {
       }, [])
 
 
-    const allVehicles = () => {
+    const allVehicles = (id) => {
         instance({
             method: 'get',
-            url: '/customer/customerVeiledVehicle',
+            url: '/customer/getVehicleInformation/' + id ,
           })
             .then(function (response) {
-              const array = [];
-      
-              response.data.forEach(val => {
-                array.push({
-                  id: val.vehicleId,
-                  brandName: val.brandName,
-                  moduleName: val.moduleName,
-                  passengers: val.passenger,
-                  fuelType: val.fuelType,
-                  trType: val.transmissionType,
-                  limit: val.dailyLimitKilometers,
-                  extraKm: val.extraKm,
-                })
-              })
-      
-              setData(array)
-              console.log("Array hutto : " , array);
-      
+              console.log(response);
             }).catch(err => {
               console.log(err);
             })
     }
-
-// const brandName = "ABC"
-// const moduleName = "ABC"
-// const fuelType = "ABC"
-// const trType = "ABC"
-// const passengers = "ABC"
-// const drPrice = "ABC"
-// const limit = "ABC"
-// const extraKm = "ABC"
-
-
 
     const reservationNow = () => {
         console.log("resavation now button ");

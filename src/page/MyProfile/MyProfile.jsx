@@ -4,6 +4,8 @@ import { Avatar } from 'react-native-paper';
 import my_Profile from '.././../assets/img/myProfile.png';
 import TextField from '../../common/TextField/TextField';
 import DesignButton from '../../common/DesignButton/DesignButton';
+import edit_icon from '../../assets/img/edit_icon.png'
+import { Image } from 'react-native';
 
 export default function MyProfile() {
   const [firstName, setFirstName] = useState('');
@@ -32,7 +34,11 @@ export default function MyProfile() {
 
   return (
     <ScrollView contentContainerStyle={styles.scrollView}>
+
+
       <View style={styles.mainContainer}>
+
+
         <View style={styles.avatarContainer}>
           <Avatar.Image size={100} source={my_Profile} style={styles.avatarImg} />
         </View>
@@ -50,6 +56,11 @@ export default function MyProfile() {
             <TextField label={'User Name'} value={userName} style={styles.textField} onChange={setUserName} />
             <TextField label={'Password'} type={'password'} value={password} style={styles.textField} onChange={setPassword} />
           </View>
+        </View>
+
+
+        <View style={styles.editIcon}>
+          <Image source={edit_icon} style={styles.editIconImage} />
         </View>
 
         <View style={styles.btnContainer}>
@@ -83,7 +94,8 @@ export default function MyProfile() {
 const styles = StyleSheet.create({
   scrollView: {
     flexGrow: 1,
-    backgroundColor: 'black',
+    backgroundColor: 'white',
+    marginTop: -100,
   },
   mainContainer: {
     flex: 1,
@@ -122,5 +134,13 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     width: '100%',
     fontSize: 18,
+  },
+  editIcon: {
+    position: 'relative',
+    left: 160,
+  },
+  editIconImage: {
+    width: 40,
+    height: 40,
   },
 });

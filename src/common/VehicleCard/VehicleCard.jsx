@@ -13,7 +13,7 @@ export default function VehicleCard({ img, brandName, moduleName, type, transmis
 
     const information = () => {
         setVisible(true)
-        console.log('information');
+        console.log('information ballo');
     }
 
     return (
