@@ -9,6 +9,9 @@ import { Image } from 'react-native';
 import instance from '../../services/Axious';
 
 export default function MyProfile() {
+
+  const [updateData, setUpdateData] = useState()
+
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -36,18 +39,46 @@ export default function MyProfile() {
   }, [])
 
   const update = () => {
-    // Implement update functionality
+    instance.put('/customer/updateCustomer', {
+      firstName: firstName ,
+      lastName: lastName ,
+      email: email,
+      contact: contact ,
+      nic: nic,
+      address: address ,
+      userName: userName,
+      password: password,
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   };
 
-  const getCustomerId = (id) => {
-    instance.get('/customer/getCustomer/' + id, {
-      params: {
-        customerId: id,
-      }
+  const getCustomerId = () => {
+
+    instance.get('/customer/getAll/customers')
+    // instance.get('/customer/getCustomer/'+id)
+    .then(function (response) {
+      const userData = response.data;
+      console.log("userData ====> ", userData);
+
+      setFirstName(userData.firstName);
+        setLastName(userData.lastName);
+        setEmail(userData.email);
+        setContact(userData.contact);
+        setNic(userData.nic);
+        setAddress(userData.address);
+        setUserName(userData.userName);
+        setPassword(userData.password);
     })
-      .then(function (response) {
-        console.log(response);
-      })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    })
+        
   }
 
   const editBtn = () => {

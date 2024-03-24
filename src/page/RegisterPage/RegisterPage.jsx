@@ -37,10 +37,10 @@ export default function RegisterPage({ navigation }) {
             instance.post('/customer/registerCustomer', data, {
             })
                 .then(function (response) {
-                    console.log(response); 
+                     console.log(response); 
                     Dialog.show({
                         type: ALERT_TYPE.SUCCESS,
-                        title: 'Warning',
+                        title: 'Success',
                         textBody: 'Register Customer Success!',
                         button: 'close',
                     })
@@ -51,7 +51,7 @@ export default function RegisterPage({ navigation }) {
                     Dialog.show({
                         type: ALERT_TYPE.SUCCESS,
                         title: 'Warning',
-                        textBody: 'Register Customer Un DANGER!',
+                        textBody: 'Register Customer Un Success!',
                         button: 'close',
                     })
                 });

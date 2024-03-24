@@ -24,8 +24,6 @@ export default function HomePage({navigation}) {
         setTimeout(() => {
             console.log("Navigating to login page...");
             navigation.navigate('CustomerVehicles')
-
-
             setLoading(false);
         }, 1000);
     }
