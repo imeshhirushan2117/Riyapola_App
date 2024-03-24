@@ -50,7 +50,6 @@ if(value === null){
       drawerContent={props => {
         return (
 
-
           <DrawerContentScrollView {...props}>
             <DrawerItemList {...props} />
             <AlertNotificationRoot>

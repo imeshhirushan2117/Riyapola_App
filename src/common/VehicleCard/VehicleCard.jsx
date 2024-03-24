@@ -3,7 +3,7 @@ import { Card, Text } from 'react-native-paper';
 import { View, Image, StyleSheet } from 'react-native';
 import DesignButton from '../DesignButton/DesignButton';
 import DiologBox from '../../component/DiologBox/DiologBox';
-export default function VehicleCard({ img, brandName, moduleName, type, transmission, passengers, status, }) {
+export default function VehicleCard({ img, brandName, moduleName, type, transmission, passengers, status, onPress}) {
 
     const [visible, setVisible] = useState(false)
 
@@ -62,8 +62,8 @@ export default function VehicleCard({ img, brandName, moduleName, type, transmis
                         label={'More Information'}
                         onPress={information}
                     />
-
                 </View>
+
                 <DiologBox onDismiss={hideDialog} visible={visible} />
             </Card.Content>
         </Card>

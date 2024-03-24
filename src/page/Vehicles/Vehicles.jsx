@@ -18,9 +18,7 @@ export default function Vehicles() {
     })
       .then(function (response) {
         const array = [];
-
         console.log(response);
-
         response.data.forEach(val => {
           array.push({
             id: val.vehicleId,
@@ -33,14 +31,11 @@ export default function Vehicles() {
             status: val.status,
           })
         })
-
         setData(array)
-
       }).catch(err => {
         console.log(err);
       })
   }
-
 
   return (
     <>
@@ -59,10 +54,7 @@ export default function Vehicles() {
             />
           )}
         />
-
       </View>
-
-
 
       {/* <View style={styles.mainView}>
         <VehicleCard
