@@ -30,14 +30,15 @@ export default function DiologBox({ visible, onDismiss, id }) {
             url: '/customer/getVehicleInformation/' + id,
         })
             .then(function (response) {
-                console.log(response.data[0].brandName);
+                console.log(response.data[0]);
+
                 setBrandName(response.data[0].brandName)
                 setModuleName(response.data[0].moduleName)
                 setFuelType(response.data[0].fuelType)
-                setTrType(response.data[0].trType)
+                setTrType(response.data[0].transmissionType)
                 setPassengers(response.data[0].passengers)
-                setDrPrice(response.data[0].drPrice)
-                setLimit(response.data[0].limit)
+                setDrPrice(response.data[0].dailyRentalPrice)
+                setLimit(response.data[0].dailyLimitKilometers)
                 setExtraKm(response.data[0].extraKm)
             }).catch(err => {
                 console.log(err);
