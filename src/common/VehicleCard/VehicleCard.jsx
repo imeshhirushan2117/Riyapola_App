@@ -3,18 +3,7 @@ import { Card, Text } from 'react-native-paper';
 import { View, Image, StyleSheet } from 'react-native';
 import DesignButton from '../DesignButton/DesignButton';
 import DiologBox from '../../component/DiologBox/DiologBox';
-export default function VehicleCard({ img, brandName, moduleName, type, transmission, passengers, status, onPress}) {
-
-    const [visible, setVisible] = useState(false)
-
-    const hideDialog = () => {
-        setVisible(false)
-    }
-
-    const information = () => {
-        setVisible(true)
-        console.log('information ballo');
-    }
+export default function VehicleCard({img, brandName, moduleName, type, transmission, passengers, status, onPress}) {
 
     return (
         <Card style={styles.card}>
@@ -60,11 +49,11 @@ export default function VehicleCard({ img, brandName, moduleName, type, transmis
                         textColor={'white'}
                         rippleColor={'#007ACC'}
                         label={'More Information'}
-                        onPress={information}
+                        onPress={onPress}
                     />
                 </View>
 
-                <DiologBox onDismiss={hideDialog} visible={visible} />
+                {/* <DiologBox id={id} onDismiss={hideDialog} visible={visible} /> */}
             </Card.Content>
         </Card>
     );

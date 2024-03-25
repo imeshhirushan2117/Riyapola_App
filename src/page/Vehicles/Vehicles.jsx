@@ -4,9 +4,23 @@ import VehicleCard from '../../common/VehicleCard/VehicleCard';
 import rent_car_1 from '../../assets/img/rent_car_1.jpg';
 import rent_car_2 from '../../assets/img/rent_car_2.jpg';
 import instance from '../../services/Axious'
+import DiologBox from '../../component/DiologBox/DiologBox';
 
 export default function Vehicles() {
-  const [data, setData] = useState([])
+
+  const [visible, setVisible] = useState(false)
+  const [data, setData] = useState([]);
+  const [selectId, setSelectId] = useState()
+
+  const hideDialog = () => {
+    setVisible(false)
+  }
+
+  const information = () => {
+    setVisible(true)
+  }
+
+
   useEffect(() => {
     getAllVehicle();
   }, [])
@@ -37,6 +51,12 @@ export default function Vehicles() {
       })
   }
 
+  const onPress = (id) => {
+    setSelectId(id)
+    setVisible(true)
+  }
+
+
   return (
     <>
       <View style={styles.mainView}>
@@ -51,9 +71,17 @@ export default function Vehicles() {
               transmission={item.transmission}
               passengers={item.passengers}
               status={item.status}
+              onPress={()=>onPress(item.id)}
             />
+
+
           )}
         />
+        {visible && 
+        <DiologBox onDismiss={hideDialog} visible={visible} id={selectId}/>
+        }
+      
+
       </View>
 
       {/* <View style={styles.mainView}>

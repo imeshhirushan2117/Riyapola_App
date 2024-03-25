@@ -1,4 +1,4 @@
-import * as React  from 'react';
+import * as React from 'react';
 import { Dialog, Portal, } from 'react-native-paper';
 import { Text } from 'react-native-paper';
 import { View, ScrollView, StyleSheet, Image } from 'react-native';
@@ -7,30 +7,45 @@ import rent_car_2 from '../../assets/img/rent_car_2.jpg';
 import instance from '../../services/Axious';
 import { useEffect, useState } from 'react';
 
-export default function DiologBox({ visible, onDismiss }) {
+export default function DiologBox({ visible, onDismiss, id }) {
 
-    const [data , setData] = useState([])
-
+    const [brandName, setBrandName] = useState("")
+    const [moduleName, setModuleName] = useState("")
+    const [fuelType, setFuelType] = useState("")
+    const [trType, setTrType] = useState("")
+    const [passengers, setPassengers] = useState("")
+    const [drPrice, setDrPrice] = useState("")
+    const [limit, setLimit] = useState("")
+    const [extraKm, setExtraKm] = useState("")
 
     useEffect(() => {
         allVehicles()
-      }, [])
+    }, [])
 
 
-    const allVehicles = (id) => {
+    const allVehicles = () => {
+        console.log(id);
         instance({
             method: 'get',
-            url: '/customer/getVehicleInformation/' + id ,
-          })
+            url: '/customer/getVehicleInformation/' + id,
+        })
             .then(function (response) {
-              console.log(response);
+                console.log(response.data[0].brandName);
+                setBrandName(response.data[0].brandName)
+                setModuleName(response.data[0].moduleName)
+                setFuelType(response.data[0].fuelType)
+                setTrType(response.data[0].trType)
+                setPassengers(response.data[0].passengers)
+                setDrPrice(response.data[0].drPrice)
+                setLimit(response.data[0].limit)
+                setExtraKm(response.data[0].extraKm)
             }).catch(err => {
-              console.log(err);
+                console.log(err);
             })
     }
 
     const reservationNow = () => {
-        console.log("resavation now button ");
+        console.log("resavation hutto ");
     }
 
     return (
@@ -43,31 +58,31 @@ export default function DiologBox({ visible, onDismiss }) {
                         </View>
 
                         <View style={styles.carDetails}>
-                            <Text variant="headlineLarge" style={styles.carName}>{data.brandName} {data.moduleName}</Text>
+                            <Text variant="headlineLarge" style={styles.carName}>{brandName} {moduleName}</Text>
                             <View style={styles.detailItem}>
                                 <Text variant="titleMedium" style={styles.detailLabel}>Fuel Type:</Text>
-                                <Text variant="titleMedium">{data.fuelType}</Text>
+                                <Text variant="titleMedium">{fuelType}</Text>
                             </View>
                             <View style={styles.detailItem}>
                                 <Text variant="titleMedium" style={styles.detailLabel}>Transmission type:</Text>
-                                <Text variant="titleMedium">{data.trType}</Text>
+                                <Text variant="titleMedium">{trType}</Text>
                             </View>
                             <View style={styles.detailItem}>
                                 <Text variant="titleMedium" style={styles.detailLabel}>No of passengers:</Text>
-                                <Text variant="titleMedium">{data.passengers}</Text>
+                                <Text variant="titleMedium">{passengers}</Text>
                             </View>
 
                             <View style={styles.detailItem}>
                                 <Text variant="titleMedium" style={styles.detailLabel}>Daily Rental Price:</Text>
-                                <Text variant="titleMedium">{data.drPrice}</Text>
+                                <Text variant="titleMedium">{drPrice}</Text>
                             </View>
                             <View style={styles.detailItem}>
                                 <Text variant="titleMedium" style={styles.detailLabel}>Daily Limit Kilometers:</Text>
-                                <Text variant="titleMedium">{data.limit}</Text>
+                                <Text variant="titleMedium">{limit}</Text>
                             </View>
                             <View style={styles.detailItem}>
                                 <Text variant="titleMedium" style={styles.detailLabel}>Extra Km:</Text>
-                                <Text variant="titleMedium">{data.extraKm}</Text>
+                                <Text variant="titleMedium">{extraKm}</Text>
                             </View>
                         </View>
 

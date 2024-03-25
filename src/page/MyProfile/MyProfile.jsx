@@ -58,7 +58,6 @@ export default function MyProfile() {
   };
 
   const getCustomerId = () => {
-
     instance.get('/customer/getAll/customers')
     // instance.get('/customer/getCustomer/'+id)
     .then(function (response) {
