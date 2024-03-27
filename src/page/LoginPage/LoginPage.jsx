@@ -9,8 +9,8 @@ import { ALERT_TYPE, Dialog, AlertNotificationRoot, Toast } from 'react-native-a
 
 
 export default function LoginPage({ navigation }) {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("imesh@gmail.com");
+    const [password, setPassword] = useState("12345");
     const [loading, setLoading] = useState(false);
 
     const signIn = () => {
