@@ -54,18 +54,24 @@ export default function LoginPage({ navigation }) {
             console.log(value);
             navigation.navigate('Drawer')
         } catch (e) {
-            console.log(e," login failed");
+            console.log(e, " login failed");
         }
     };
 
     const register = () => {
-
         setLoading(true);
         setTimeout(() => {
             navigation.navigate('Register')
             setLoading(false);
         }, 1000);
+    }
 
+    const back = () => {
+        setLoading(true);
+        setTimeout(() => {
+            navigation.navigate('Home')
+            setLoading(false);
+        }, 1000);
 
     }
 
@@ -110,7 +116,10 @@ export default function LoginPage({ navigation }) {
 
                         <View style={styles.textContainer}>
                             <Text style={styles.text} onPress={register}>Register Customer</Text>
+                            <Text style={styles.text2} onPress={back}> Back</Text>
                         </View>
+
+
 
                     </AlertNotificationRoot>
 
@@ -168,14 +177,27 @@ const styles = StyleSheet.create({
     },
     textContainer: {
         paddingTop: 15,
-        width: '85%',
+        display: 'flex',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between'
     },
+
     text: {
         fontSize: 15,
         fontStyle: 'italic',
         textAlign: 'left',
         color: 'white',
     },
+
+    text2: {
+        fontSize: 15,
+        fontStyle: 'italic',
+        color: 'white',
+        textAlign: 'right',
+    },
+
+
     loaderContainer: {
         position: 'absolute',
         bottom: 40,
@@ -196,5 +218,8 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         textAlign: 'center'
-    }
+    },
+
+
+
 });

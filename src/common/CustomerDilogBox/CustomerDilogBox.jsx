@@ -24,7 +24,7 @@ export default function CustomerDilogBox({ visible, onDismiss, naviHome , id }) 
   }, [])
 
   const allVehicles = () => {
-    console.log("============== id == " +id);
+    console.log("============= id == " + id);
     instance({
       method: 'get',
       url: '/customer/getVehicleInformationForCustomer/' + id,

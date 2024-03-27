@@ -83,47 +83,6 @@ export default function CustomerView({ navigation }) {
             <View>
                 <CustomerDilogBox naviHome={() => { navigation.navigate('Login') }} onDismiss={hideDialog} visible={visible}  id={selectId}/>
             </View>
-
-
-            {/* <FlatList
-        data={DATA}
-        renderItem={({item}) => <Item title={item.title} />}
-        keyExtractor={item => item.id}
-      />
-
-        <Card style={styles.card}>
-            <Card.Content>
-                <View style={styles.imageContainer}>
-                    <Image source={rent_car_1} style={styles.image} />
-                </View>
-
-                <View style={styles.detailsContainer}>
-                    <Text style={styles.brandName}>BMW</Text>
-                    <Text style={styles.moduleName}>Car</Text>
-                    <Text style={styles.text}>Fuel Type:</Text>
-                    <Text style={styles.text}>Transmission: </Text>
-                    <Text style={styles.text}>Capacity:passengers</Text>
-                </View>
-
-                <View style={styles.statusContainer}>
-                    <Text style={styles.status}>status</Text>
-                </View>
-
-                <View style={styles.btnView}>
-                    <DesignButton
-                        style={styles.btn}
-                        buttonColor={'#005188'}
-                        textColor={'white'}
-                        rippleColor={'#007ACC'}
-                        label={'More Information Customer'}
-                        onPress={information}
-                    />
-                </View>
-                <CustomerDilogBox naviHome={() => { navigation.navigate('Login') }} onDismiss={hideDialog} visible={visible} />
-            </Card.Content>
-        </Card> */}
-
-
         </View>
     )
 }
