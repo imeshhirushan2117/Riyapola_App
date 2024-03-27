@@ -73,8 +73,6 @@ export default function Vehicles() {
               status={item.status}
               onPress={()=>onPress(item.id)}
             />
-
-
           )}
         />
         {visible && 

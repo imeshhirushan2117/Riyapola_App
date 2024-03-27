@@ -22,7 +22,7 @@ export default function CustomerDilogBox({ visible, onDismiss ,naviHome}) {
                         </View>
 
                         <View style={styles.carDetails}>
-                            <Text variant="headlineLarge" style={styles.carName}>MITSUBISHI MONTERO SPORT</Text>
+                            <Text variant="headlineLarge" style={styles.carName}>Hutto</Text>
                             <View style={styles.detailItem}>
                                 <Text variant="titleMedium" style={styles.detailLabel}>Fuel Type:</Text>
                                 <Text variant="titleMedium">Diesel</Text>

@@ -37,7 +37,7 @@ export default function App() {
   };
   return (
     <>
-      <PaperProvider>
+      {/* <PaperProvider>
         <NavigationContainer>
           {
             login ? (<Stack.Navigator><Stack.Screen name="Drawer" component={DrawerNav} options={{ headerShown: false }} /></Stack.Navigator>) : (
@@ -52,12 +52,12 @@ export default function App() {
             )
           }
         </NavigationContainer>
-      </PaperProvider>
+      </PaperProvider> */}
    
 
-     {/* <PaperProvider>
-       <MyProfile />
-     </PaperProvider> */}
+     <PaperProvider>
+       <CustomerView />
+     </PaperProvider>
 
      </>
   )

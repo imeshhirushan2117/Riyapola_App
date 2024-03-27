@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Card, Text } from 'react-native-paper';
 import { View, Image, StyleSheet, FlatList } from 'react-native';
-import DesignButton from '../../common/DesignButton/DesignButton';
-import CustomerDilogBox from '../../common/CustomerDilogBox/CustomerDilogBox'
-import rent_car_1 from '../../assets/img/rent_car_1.jpg';
-import VehicleCard from '../../common/VehicleCard/VehicleCard';
 import instance from '../../services/Axious';
+import CustomerVehicleCard from '../../common/CustomerVehicleCard/CustomerVehicleCard';
+import CustomerDilogBox from '../../common/CustomerDilogBox/CustomerDilogBox';
+
 
 export default function CustomerView({ navigation }) {
 
@@ -24,11 +23,6 @@ export default function CustomerView({ navigation }) {
         setVisible(true)
         console.log('customerView');
     }
-
-    const onPress = () => {
-        console.log("ompress huttp");
-    }
-
 
     const getAllVehicle = () => {
         instance({
@@ -58,6 +52,40 @@ export default function CustomerView({ navigation }) {
 
 
     return (
+        <View style={styles.mainView}>
+
+            <View style={styles.textView}>
+                <Text style={styles.text} variant="titleLarge">Choose Your</Text>
+                <Text style={styles.text2} variant="titleLarge"> Vehicle</Text>
+            </View>
+
+            <FlatList
+                data={data}
+                renderItem={({ item }) => (
+                    <CustomerVehicleCard
+                        img={item.rent_car_1}
+                        brandName={item.brandName}
+                        moduleName={item.moduleName}
+                        type={item.type}
+                        transmission={item.transmission}
+                        passengers={item.passengers}
+                        status={item.status}
+                        onPress={() => information(item.id)}
+                    />
+                )}
+            />
+
+            <View>
+                <CustomerDilogBox naviHome={() => { navigation.navigate('Login') }} onDismiss={hideDialog} visible={visible} />
+            </View>
+
+
+            {/* <FlatList
+        data={DATA}
+        renderItem={({item}) => <Item title={item.title} />}
+        keyExtractor={item => item.id}
+      />
+
         <Card style={styles.card}>
             <Card.Content>
                 <View style={styles.imageContainer}>
@@ -88,59 +116,31 @@ export default function CustomerView({ navigation }) {
                 </View>
                 <CustomerDilogBox naviHome={() => { navigation.navigate('Login') }} onDismiss={hideDialog} visible={visible} />
             </Card.Content>
-        </Card>
+        </Card> */}
 
 
+        </View>
     )
 }
 
 
 const styles = StyleSheet.create({
-    card: {
-        marginVertical: 10,
-        marginHorizontal: 5,
-        borderRadius: 10,
-        elevation: 3,
+    mainView: {
+        padding: 15,
     },
-    imageContainer: {
-        alignItems: 'center',
-    },
-    image: {
-        width: '100%',
-        height: 200,
-        resizeMode: 'cover',
-        borderTopLeftRadius: 10,
-        borderTopRightRadius: 10,
-    },
-    detailsContainer: {
+
+    textView: {
         padding: 10,
-    },
-    brandName: {
-        fontSize: 20,
-        fontWeight: 'bold',
-    },
-    moduleName: {
-        fontSize: 18,
-        marginBottom: 5,
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     text: {
-        fontSize: 16,
-        marginBottom: 3,
-    },
-    statusContainer: {
-        alignItems: 'center',
-        marginTop: 6,
-    },
-    status: {
-        fontSize: 18,
         fontWeight: 'bold',
     },
-    btnView: {
-        padding: 10,
-    },
-    btn: {
-        borderRadius: 10,
-        width: "100%",
-        fontSize: 18,
+    text2: {
+        fontWeight: 'bold',
+        color: '#A50010',
     },
 });
