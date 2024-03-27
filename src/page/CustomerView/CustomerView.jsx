@@ -10,19 +10,12 @@ export default function CustomerView({ navigation }) {
 
     const [visible, setVisible] = useState(false)
     const [data, setData] = useState([])
+    const [selectId, setSelectId] = useState()
 
     useEffect(() => {
         getAllVehicle()
     }, [])
 
-    const hideDialog = () => {
-        setVisible(false)
-    }
-
-    const information = () => {
-        setVisible(true)
-        console.log('customerView');
-    }
 
     const getAllVehicle = () => {
         instance({
@@ -51,6 +44,18 @@ export default function CustomerView({ navigation }) {
     }
 
 
+
+    const hideDialog = () => {
+        setVisible(false)
+    }
+
+    const information = (id) => {
+        setSelectId(id)
+        setVisible(true) 
+    }
+
+    
+
     return (
         <View style={styles.mainView}>
 
@@ -76,7 +81,7 @@ export default function CustomerView({ navigation }) {
             />
 
             <View>
-                <CustomerDilogBox naviHome={() => { navigation.navigate('Login') }} onDismiss={hideDialog} visible={visible} />
+                <CustomerDilogBox naviHome={() => { navigation.navigate('Login') }} onDismiss={hideDialog} visible={visible}  id={selectId}/>
             </View>
 
 
