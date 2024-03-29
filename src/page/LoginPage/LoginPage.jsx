@@ -17,6 +17,7 @@ export default function LoginPage({ navigation }) {
         setLoading(true);
         setTimeout(() => {
             customerSignIn()
+            clear()
             setLoading(false);
         }, 1000);
     }
@@ -29,7 +30,6 @@ export default function LoginPage({ navigation }) {
             })
                 .then(function (response) {
                     console.log(response.data);
-                    clear()
                     if (response.data.token != null) {
                         storeData(response);
                     }

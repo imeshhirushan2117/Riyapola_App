@@ -185,7 +185,6 @@ export default function MyProfile({ navigation }) {
           </AlertNotificationRoot>
         </View>
 
-        <AlertNotificationRoot>
           <View style={styles.deletedBtn}>
             <DesignButton
               style={styles.btn}
@@ -196,8 +195,6 @@ export default function MyProfile({ navigation }) {
               onPress={deleted}
             />
           </View>
-        </AlertNotificationRoot>
-
       </View>
 
       {loading && (
