@@ -35,7 +35,7 @@ export default function MyProfile() {
   };
 
   useEffect(() => {
-    getCustomerId()
+    getCustomerInformation()
   }, [])
 
   const update = () => {
@@ -57,13 +57,10 @@ export default function MyProfile() {
     });
   };
 
-  const getCustomerId = () => {
-    instance.get('/customer/getAll/customers')
-    // instance.get('/customer/getCustomer/'+id)
+  const getCustomerInformation = () => {
+    instance.get('/customer/getUserInfoById')
     .then(function (response) {
       const userData = response.data;
-      console.log("userData ====> ", userData);
-
       setFirstName(userData.firstName);
         setLastName(userData.lastName);
         setEmail(userData.email);

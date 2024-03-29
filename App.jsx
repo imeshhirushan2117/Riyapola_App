@@ -56,7 +56,7 @@ export default function App() {
    
 
      {/* <PaperProvider>
-       <CustomerView />
+       <MyProfile />
      </PaperProvider> */}
 
      </>
