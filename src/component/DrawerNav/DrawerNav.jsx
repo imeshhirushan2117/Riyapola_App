@@ -26,20 +26,16 @@ export default function DrawerNav({ navigation }) {
   removeValue = async () => {
     try {
       await AsyncStorage.removeItem('stmToken')
-     const value =  await AsyncStorage.getItem('stmToken')
-
-if(value === null){
-  navigation.navigate('Home')
-  console.log('=============',value);
-}else{
-  console.log("fuck");
-}
-
-      
+      const value = await AsyncStorage.getItem('stmToken')
+      if (value === null) {
+        navigation.navigate('Home')
+        console.log('=============', value);
+      } else {
+        console.log("Error Log Out");
+      }
     } catch (e) {
-
+      console.log(e);
     }
-
   }
 
 

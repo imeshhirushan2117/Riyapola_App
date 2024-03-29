@@ -29,6 +29,7 @@ export default function LoginPage({ navigation }) {
             })
                 .then(function (response) {
                     console.log(response.data);
+                    clear()
                     if (response.data.token != null) {
                         storeData(response);
                     }
@@ -45,6 +46,11 @@ export default function LoginPage({ navigation }) {
                 button: 'close',
             })
         }
+    }
+
+    const clear = () => {
+        setEmail('');
+        setPassword('');
     }
 
     const storeData = async (response) => {

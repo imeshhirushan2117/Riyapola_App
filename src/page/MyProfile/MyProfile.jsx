@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, ScrollView, StyleSheet, TouchableOpacity , ActivityIndicator} from 'react-native';
 import { Avatar, Button } from 'react-native-paper';
 import my_Profile from '.././../assets/img/myProfile.png';
 import TextField from '../../common/TextField/TextField';
@@ -8,9 +8,9 @@ import edit_icon from '../../assets/img/edit_icon.png'
 import { Image } from 'react-native';
 import instance from '../../services/Axious';
 import { ALERT_TYPE, Dialog, AlertNotificationRoot, Toast } from 'react-native-alert-notification';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-
-export default function MyProfile({navigation}) {
+export default function MyProfile({ navigation }) {
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -22,6 +22,7 @@ export default function MyProfile({navigation}) {
   const [password, setPassword] = useState('');
 
   const [diseble, setDiseble] = useState(true)
+  const [loading, setLoading] = useState(false);
 
   const clear = () => {
     setFirstName('');
@@ -101,19 +102,34 @@ export default function MyProfile({navigation}) {
     instance.delete('/customer/deletedUserInfoById')
       .then(response => {
         console.log(response);
-        Dialog.show({
-          type: ALERT_TYPE.SUCCESS,
-          title: 'Success',
-          textBody: 'Your Accout Is Deleted !',
-          button: 'close',
-        })
+        setLoading(true);
+        removeValue()
+        setTimeout(() => {
+          navigation.navigate('Login')
+          setLoading(false);
+        }, 1000);
 
-        navigation.navigate('Login')
       })
       .catch(error => {
         console.error(error);
       });
   }
+
+  removeValue = async () => {
+    try {
+      await AsyncStorage.removeItem('stmToken')
+      const value = await AsyncStorage.getItem('stmToken')
+      if (value === null) {
+        navigation.navigate('Home')
+        console.log('=============', value);
+      } else {
+        console.log("Error Log Out");
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
 
   return (
     <ScrollView contentContainerStyle={styles.scrollView}>
@@ -183,6 +199,12 @@ export default function MyProfile({navigation}) {
         </AlertNotificationRoot>
 
       </View>
+
+      {loading && (
+        <View style={styles.loaderContainer}>
+          <ActivityIndicator size="large" color="white" />
+        </View>
+      )}
     </ScrollView>
   );
 }
@@ -252,5 +274,15 @@ const styles = StyleSheet.create({
   },
   editIconBtn: {
     width: '100%'
-  }
+  },
+  loaderContainer: {
+    position: 'absolute',
+    bottom: 40,
+    zIndex: 1000,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    width: '100%',
+    height: '100%',
+  },
 });
