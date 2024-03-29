@@ -18,9 +18,6 @@ export default function MyProfile({ navigation }) {
   const [contact, setContact] = useState('');
   const [nic, setNic] = useState('');
   const [address, setAddress] = useState('');
-  const [userName, setUserName] = useState('');
-  const [password, setPassword] = useState('');
-
   const [diseble, setDiseble] = useState(true)
   const [loading, setLoading] = useState(false);
 
@@ -31,8 +28,6 @@ export default function MyProfile({ navigation }) {
     setContact('');
     setNic('');
     setAddress('');
-    setUserName('');
-    setPassword('');
   };
 
   useEffect(() => {
@@ -47,8 +42,6 @@ export default function MyProfile({ navigation }) {
       contact: contact,
       nic: nic,
       address: address,
-      userName: userName,
-      password: password,
     })
       .then(function (response) {
         console.log(response);
@@ -143,13 +136,13 @@ export default function MyProfile({ navigation }) {
             <TextField label={'First Name'} value={firstName} style={styles.textField} onChange={setFirstName} disabled={diseble} />
             <TextField label={'Last Name'} value={lastName} style={styles.textField} onChange={setLastName} disabled={diseble} />
             <TextField label={'Email'} type={'email'} value={email} style={styles.textField} onChange={setEmail} disabled={diseble} />
-            <TextField label={'Contact'} value={contact} style={styles.textField} onChange={setContact} disabled={diseble} />
           </View>
           <View style={styles.column}>
             <TextField label={'Nic'} value={nic} style={styles.textField} onChange={setNic} disabled={diseble} />
             <TextField label={'Address'} value={address} style={styles.textField} onChange={setAddress} disabled={diseble} />
-            <TextField label={'User Name'} value={userName} style={styles.textField} onChange={setUserName} disabled={diseble} />
-            <TextField label={'Password'} type={'password'} value={password} style={styles.textField} onChange={setPassword} disabled={diseble} />
+            <TextField label={'Contact'} value={contact} style={styles.textField} onChange={setContact} disabled={diseble} />
+            {/* <TextField label={'User Name'} value={userName} style={styles.textField} onChange={setUserName} disabled={diseble} /> */}
+            {/* <TextField label={'Password'} type={'password'} value={password} style={styles.textField} onChange={setPassword} disabled={diseble} /> */}
           </View>
         </View>
 
