@@ -7,6 +7,7 @@ import { ActivityIndicator, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ALERT_TYPE, Dialog, AlertNotificationRoot, Toast } from 'react-native-alert-notification';
 import HomePage from '../../page/HomePage/HomePage';
+import Info from '../../page/Info/Info';
 
 const Drawer = createDrawerNavigator();
 
@@ -66,6 +67,7 @@ export default function DrawerNav({ navigation }) {
     >
       <Drawer.Screen name="Vehicles" component={Vehicles} />
       <Drawer.Screen name="Profile" component={MyProfile} />
+      <Drawer.Screen name="Info" component={Info} />
       <Drawer.Screen name="Home" options={{
         drawerItemStyle: { display: 'none' },
         headerShown: false

@@ -10,76 +10,59 @@ import instance from '../../services/Axious';
 import { ALERT_TYPE, Dialog, AlertNotificationRoot, Toast } from 'react-native-alert-notification';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default function MyProfile({ navigation }) {
+export default function Info({ navigation }) {
 
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [contact, setContact] = useState('');
-  const [nic, setNic] = useState('');
-  const [address, setAddress] = useState('');
+  const [userName, setUserName] = useState('');
+  const [password, setPassword] = useState('');
   const [diseble, setDiseble] = useState(true)
   const [loading, setLoading] = useState(false);
-
-  const clear = () => {
-    setFirstName('');
-    setLastName('');
-    setEmail('');
-    setContact('');
-    setNic('');
-    setAddress('');
-  };
 
   useEffect(() => {
     getCustomerInformation()
   }, [])
 
+
+  const clear = () => {
+    setUserName('')
+    setPassword('')
+  };
+
   const update = () => {
-    instance.put('/customer/updateUserInfoById', {
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      contact: contact,
-      nic: nic,
-      address: address,
-    })
-      .then(function (response) {
-        console.log(response);
-        Dialog.show({
-          type: ALERT_TYPE.SUCCESS,
-          title: 'Success',
-          textBody: 'Customer Update Success!',
-          button: 'close',
-        })
-        setDiseble(true)
-      })
-      .catch(function (error) {
-        console.log(error);
-        Dialog.show({
-          type: ALERT_TYPE.SUCCESS,
-          title: 'Warning',
-          textBody: 'Update Customer Un Success!',
-          button: 'close',
-        })
-      });
+    // instance.put('/customer/updateUserInfoById', {
+    //   userName:userName ,
+    //   password: password,
+    // })
+    //   .then(function (response) {
+    //     console.log(response);
+    //     Dialog.show({
+    //       type: ALERT_TYPE.SUCCESS,
+    //       title: 'Success',
+    //       textBody: 'Customer Update Success!',
+    //       button: 'close',
+    //     })
+    //     setDiseble(true)
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //     Dialog.show({
+    //       type: ALERT_TYPE.SUCCESS,
+    //       title: 'Warning',
+    //       textBody: 'Update Customer Un Success!',
+    //       button: 'close',
+    //     })
+    //   });
   };
 
   const getCustomerInformation = () => {
-    instance.get('/customer/getUserInfoById')
-      .then(function (response) {
-        const userData = response.data;
-        setFirstName(userData.firstName);
-        setLastName(userData.lastName);
-        setEmail(userData.email);
-        setContact(userData.contact);
-        setNic(userData.nic);
-        setAddress(userData.address);
-        setUserName(userData.userName);
-        setPassword(userData.password);
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
+    // instance.get('/customer/getUserInfoById')
+    //   .then(function (response) {
+    //     const userData = response.data;
+    //     setUserName(userData.userName);
+    //     setPassword(userData.password);
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   })
 
   }
 
@@ -91,6 +74,39 @@ export default function MyProfile({ navigation }) {
     }
   }
 
+  const deleted = () => {
+    instance.delete('/customer/deletedUserInfoById')
+      .then(response => {
+        console.log(response);
+        setLoading(true);
+        removeValue()
+        setTimeout(() => {
+          navigation.navigate('Login')
+          setLoading(false);
+        }, 1000);
+
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
+
+  removeValue = async () => {
+    try {
+      await AsyncStorage.removeItem('stmToken')
+      const value = await AsyncStorage.getItem('stmToken')
+      if (value === null) {
+        navigation.navigate('Home')
+        console.log('=============', value);
+      } else {
+        console.log("Error Log Out");
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+
   return (
     <ScrollView contentContainerStyle={styles.scrollView}>
       <View style={styles.mainContainer}>
@@ -100,14 +116,8 @@ export default function MyProfile({ navigation }) {
 
         <View style={styles.formContainer}>
           <View style={styles.column}>
-            <TextField label={'First Name'} value={firstName} style={styles.textField} onChange={setFirstName} disabled={diseble} />
-            <TextField label={'Last Name'} value={lastName} style={styles.textField} onChange={setLastName} disabled={diseble} />
-            <TextField label={'Email'} type={'email'} value={email} style={styles.textField} onChange={setEmail} disabled={diseble} />
-          </View>
-          <View style={styles.column}>
-            <TextField label={'Nic'} value={nic} style={styles.textField} onChange={setNic} disabled={diseble} />
-            <TextField label={'Address'} value={address} style={styles.textField} onChange={setAddress} disabled={diseble} />
-            <TextField label={'Contact'} value={contact} style={styles.textField} onChange={setContact} disabled={diseble} />
+            <TextField label={'User Name'} value={userName} style={styles.textField} onChange={setUserName} disabled={diseble} />
+            <TextField label={'Password'} type={'password'} value={password} style={styles.textField} onChange={setPassword} disabled={diseble} />
           </View>
         </View>
 
@@ -142,6 +152,17 @@ export default function MyProfile({ navigation }) {
             </View>
           </AlertNotificationRoot>
         </View>
+
+          <View style={styles.deletedBtn}>
+            <DesignButton
+              style={styles.btn}
+              buttonColor={'#e74c3c'}
+              textColor={'white'}
+              rippleColor={'#c0392b'}
+              label={'Deleted My Account'}
+              onPress={deleted}
+            />
+          </View>
       </View>
 
       {loading && (
@@ -175,7 +196,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   column: {
-    width: '48%',
+    width: '100%',
   },
   textField: {
     marginBottom: 15,
@@ -196,6 +217,13 @@ const styles = StyleSheet.create({
   btnView: {
     width: '45%',
   },
+
+  deletedBtn: {
+    width: 330,
+    margin: 40,
+
+  },
+
   btn: {
     borderRadius: 10,
     width: '100%',
