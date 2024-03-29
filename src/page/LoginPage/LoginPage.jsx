@@ -93,7 +93,7 @@ export default function LoginPage({ navigation }) {
 
                     <View style={styles.textFieldContainer}>
                         <View style={styles.textView}>
-                            <TextField label={'Email'} value={email} style={styles.textField} onChange={(val) => setEmail(val)} />
+                            <TextField label={'User Name'} value={email} style={styles.textField} onChange={(val) => setEmail(val)} />
                         </View>
 
                         <View style={styles.textView}>

@@ -7,10 +7,10 @@ import DesignButton from '../../common/DesignButton/DesignButton';
 import edit_icon from '../../assets/img/edit_icon.png'
 import { Image } from 'react-native';
 import instance from '../../services/Axious';
+import { ALERT_TYPE, Dialog, AlertNotificationRoot, Toast } from 'react-native-alert-notification';
+
 
 export default function MyProfile() {
-
-  const [updateData, setUpdateData] = useState()
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -39,29 +39,42 @@ export default function MyProfile() {
   }, [])
 
   const update = () => {
-    instance.put('/customer/updateCustomer', {
-      firstName: firstName ,
-      lastName: lastName ,
+    instance.put('/customer/updateUserInfoById', {
+      firstName: firstName,
+      lastName: lastName,
       email: email,
-      contact: contact ,
+      contact: contact,
       nic: nic,
-      address: address ,
+      address: address,
       userName: userName,
       password: password,
     })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+      .then(function (response) {
+        console.log(response);
+        Dialog.show({
+          type: ALERT_TYPE.SUCCESS,
+          title: 'Success',
+          textBody: 'Customer Update Success!',
+          button: 'close',
+      })
+      setDiseble(true)
+      })
+      .catch(function (error) {
+        console.log(error);
+        Dialog.show({
+          type: ALERT_TYPE.SUCCESS,
+          title: 'Warning',
+          textBody: 'Update Customer Un Success!',
+          button: 'close',
+      })
+      });
   };
 
   const getCustomerInformation = () => {
     instance.get('/customer/getUserInfoById')
-    .then(function (response) {
-      const userData = response.data;
-      setFirstName(userData.firstName);
+      .then(function (response) {
+        const userData = response.data;
+        setFirstName(userData.firstName);
         setLastName(userData.lastName);
         setEmail(userData.email);
         setContact(userData.contact);
@@ -69,12 +82,11 @@ export default function MyProfile() {
         setAddress(userData.address);
         setUserName(userData.userName);
         setPassword(userData.password);
-    })
-    .catch(function (error) {
-      // handle error
-      console.log(error);
-    })
-        
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+
   }
 
   const editBtn = () => {
@@ -85,10 +97,13 @@ export default function MyProfile() {
     }
   }
 
+
+  const deleted = () => {
+      console.log("deleted");
+  }
+
   return (
     <ScrollView contentContainerStyle={styles.scrollView}>
-
-
       <View style={styles.mainContainer}>
         <View style={styles.avatarContainer}>
           <Avatar.Image size={100} source={my_Profile} style={styles.avatarImg} />
@@ -126,18 +141,34 @@ export default function MyProfile() {
               onPress={clear}
             />
           </View>
-
-          <View style={styles.btnView}>
-            <DesignButton
-              style={styles.btn}
-              buttonColor={'#16a085'}
-              textColor={'white'}
-              rippleColor={'#1abc9c'}
-              label={'Update'}
-              onPress={update}
-            />
-          </View>
+          
+          <AlertNotificationRoot>
+            <View style={styles.btnUpdate}>
+              <DesignButton
+                style={styles.btn}
+                buttonColor={'#16a085'}
+                textColor={'white'}
+                rippleColor={'#1abc9c'}
+                label={'Update'}
+                onPress={update}
+              />
+            </View>
+          </AlertNotificationRoot>
         </View>
+
+        <AlertNotificationRoot>
+            <View style={styles.deletedBtn}>
+              <DesignButton
+                style={styles.btn}
+                buttonColor={'#e74c3c'}
+                textColor={'white'}
+                rippleColor={'#c0392b'}
+                label={'Deleted My Account'}
+                onPress={deleted}
+              />
+            </View>
+          </AlertNotificationRoot>
+
       </View>
     </ScrollView>
   );
@@ -179,9 +210,20 @@ const styles = StyleSheet.create({
     marginTop: 20,
     width: '100%',
   },
+  btnUpdate:{
+    width: "85%",
+    marginLeft:20,
+  },
   btnView: {
     width: '45%',
   },
+
+  deletedBtn:{
+    width:330,
+    margin:40,
+    
+  },
+
   btn: {
     borderRadius: 10,
     width: '100%',
