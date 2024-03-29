@@ -10,7 +10,7 @@ import instance from '../../services/Axious';
 import { ALERT_TYPE, Dialog, AlertNotificationRoot, Toast } from 'react-native-alert-notification';
 
 
-export default function MyProfile() {
+export default function MyProfile({navigation}) {
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -56,8 +56,8 @@ export default function MyProfile() {
           title: 'Success',
           textBody: 'Customer Update Success!',
           button: 'close',
-      })
-      setDiseble(true)
+        })
+        setDiseble(true)
       })
       .catch(function (error) {
         console.log(error);
@@ -66,7 +66,7 @@ export default function MyProfile() {
           title: 'Warning',
           textBody: 'Update Customer Un Success!',
           button: 'close',
-      })
+        })
       });
   };
 
@@ -97,9 +97,22 @@ export default function MyProfile() {
     }
   }
 
-
   const deleted = () => {
-      console.log("deleted");
+    instance.delete('/customer/deletedUserInfoById')
+      .then(response => {
+        console.log(response);
+        Dialog.show({
+          type: ALERT_TYPE.SUCCESS,
+          title: 'Success',
+          textBody: 'Your Accout Is Deleted !',
+          button: 'close',
+        })
+
+        navigation.navigate('Login')
+      })
+      .catch(error => {
+        console.error(error);
+      });
   }
 
   return (
@@ -141,7 +154,7 @@ export default function MyProfile() {
               onPress={clear}
             />
           </View>
-          
+
           <AlertNotificationRoot>
             <View style={styles.btnUpdate}>
               <DesignButton
@@ -157,17 +170,17 @@ export default function MyProfile() {
         </View>
 
         <AlertNotificationRoot>
-            <View style={styles.deletedBtn}>
-              <DesignButton
-                style={styles.btn}
-                buttonColor={'#e74c3c'}
-                textColor={'white'}
-                rippleColor={'#c0392b'}
-                label={'Deleted My Account'}
-                onPress={deleted}
-              />
-            </View>
-          </AlertNotificationRoot>
+          <View style={styles.deletedBtn}>
+            <DesignButton
+              style={styles.btn}
+              buttonColor={'#e74c3c'}
+              textColor={'white'}
+              rippleColor={'#c0392b'}
+              label={'Deleted My Account'}
+              onPress={deleted}
+            />
+          </View>
+        </AlertNotificationRoot>
 
       </View>
     </ScrollView>
@@ -210,18 +223,18 @@ const styles = StyleSheet.create({
     marginTop: 20,
     width: '100%',
   },
-  btnUpdate:{
+  btnUpdate: {
     width: "85%",
-    marginLeft:20,
+    marginLeft: 20,
   },
   btnView: {
     width: '45%',
   },
 
-  deletedBtn:{
-    width:330,
-    margin:40,
-    
+  deletedBtn: {
+    width: 330,
+    margin: 40,
+
   },
 
   btn: {
