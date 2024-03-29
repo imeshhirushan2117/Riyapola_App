@@ -28,41 +28,41 @@ export default function Info({ navigation }) {
   };
 
   const update = () => {
-    // instance.put('/customer/updateUserInfoById', {
-    //   userName:userName ,
-    //   password: password,
-    // })
-    //   .then(function (response) {
-    //     console.log(response);
-    //     Dialog.show({
-    //       type: ALERT_TYPE.SUCCESS,
-    //       title: 'Success',
-    //       textBody: 'Customer Update Success!',
-    //       button: 'close',
-    //     })
-    //     setDiseble(true)
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //     Dialog.show({
-    //       type: ALERT_TYPE.SUCCESS,
-    //       title: 'Warning',
-    //       textBody: 'Update Customer Un Success!',
-    //       button: 'close',
-    //     })
-    //   });
+    instance.put('/customer/updateCustomerUseNamePasswordInfoById', {
+      userName:userName ,
+      password: password,
+    })
+      .then(function (response) {
+        console.log(response);
+        Dialog.show({
+          type: ALERT_TYPE.SUCCESS,
+          title: 'Success',
+          textBody: 'Customer Update Success!',
+          button: 'close',
+        })
+        setDiseble(true)
+      })
+      .catch(function (error) {
+        console.log(error);
+        Dialog.show({
+          type: ALERT_TYPE.SUCCESS,
+          title: 'Warning',
+          textBody: 'Update Customer Un Success!',
+          button: 'close',
+        })
+      });
   };
 
   const getCustomerInformation = () => {
-    // instance.get('/customer/getUserInfoById')
-    //   .then(function (response) {
-    //     const userData = response.data;
-    //     setUserName(userData.userName);
-    //     setPassword(userData.password);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   })
+    instance.get('/customer/getCustomerUseNamePasswordInfoById')
+      .then(function (response) {
+        const userData = response.data;
+        setUserName(userData.userName);
+        setPassword(userData.password);
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
 
   }
 
@@ -136,6 +136,7 @@ export default function Info({ navigation }) {
               rippleColor={'#f1c40f'}
               label={'Clear'}
               onPress={clear}
+              disabled={diseble}
             />
           </View>
 
@@ -148,6 +149,7 @@ export default function Info({ navigation }) {
                 rippleColor={'#1abc9c'}
                 label={'Update'}
                 onPress={update}
+                disabled={diseble}
               />
             </View>
           </AlertNotificationRoot>

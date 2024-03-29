@@ -126,6 +126,7 @@ export default function MyProfile({ navigation }) {
               rippleColor={'#f1c40f'}
               label={'Clear'}
               onPress={clear}
+              disabled={diseble}
             />
           </View>
 
@@ -138,6 +139,7 @@ export default function MyProfile({ navigation }) {
                 rippleColor={'#1abc9c'}
                 label={'Update'}
                 onPress={update}
+                disabled={diseble}
               />
             </View>
           </AlertNotificationRoot>
