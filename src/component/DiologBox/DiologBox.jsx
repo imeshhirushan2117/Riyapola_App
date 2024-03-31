@@ -61,29 +61,29 @@ export default function DiologBox({ visible, onDismiss, id }) {
                         <View style={styles.carDetails}>
                             <Text variant="headlineLarge" style={styles.carName}>{brandName} {moduleName}</Text>
                             <View style={styles.detailItem}>
-                                <Text variant="titleMedium" style={styles.detailLabel}>Fuel Type:</Text>
+                                <Text variant="titleMedium" style={styles.detailLabel}>Fuel Type</Text>
                                 <Text variant="titleMedium">{fuelType}</Text>
                             </View>
                             <View style={styles.detailItem}>
-                                <Text variant="titleMedium" style={styles.detailLabel}>Transmission type:</Text>
+                                <Text variant="titleMedium" style={styles.detailLabel}>Transmission Type</Text>
                                 <Text variant="titleMedium">{trType}</Text>
                             </View>
                             <View style={styles.detailItem}>
-                                <Text variant="titleMedium" style={styles.detailLabel}>No of passengers:</Text>
+                                <Text variant="titleMedium" style={styles.detailLabel}>Seats</Text>
                                 <Text variant="titleMedium">{passengers}</Text>
                             </View>
 
                             <View style={styles.detailItem}>
-                                <Text variant="titleMedium" style={styles.detailLabel}>Daily Rental Price:</Text>
-                                <Text variant="titleMedium">{drPrice}</Text>
+                                <Text variant="titleMedium" style={styles.detailLabel}>Daily Rental Price</Text>
+                                <Text variant="titleMedium">Rs.{drPrice}</Text>
                             </View>
                             <View style={styles.detailItem}>
-                                <Text variant="titleMedium" style={styles.detailLabel}>Daily Limit Kilometers:</Text>
-                                <Text variant="titleMedium">{limit}</Text>
+                                <Text variant="titleMedium" style={styles.detailLabel}>Daily Limit Kilometers</Text>
+                                <Text variant="titleMedium">{limit} Km</Text>
                             </View>
                             <View style={styles.detailItem}>
-                                <Text variant="titleMedium" style={styles.detailLabel}>Extra Km:</Text>
-                                <Text variant="titleMedium">{extraKm}</Text>
+                                <Text variant="titleMedium" style={styles.detailLabel}>Extra Km</Text>
+                                <Text variant="titleMedium">Rs.{extraKm}</Text>
                             </View>
                         </View>
 

@@ -18,20 +18,20 @@ export default function VehicleCard({img, brandName, moduleName, type, transmiss
                     </View>
 
                     <View style={styles.commonView}>
-                        <Text style={styles.text}>Fuel Type :</Text>
+                        <Text style={styles.text}>Fuel Type</Text>
                         <Text style={styles.text2}>{type}</Text>
                     </View>
 
                     <View style={styles.commonView}>
 
-                        <Text style={styles.text}>Transmission :</Text>
+                        <Text style={styles.text}>Transmission</Text>
                         <Text style={styles.text2}>{transmission}</Text>
                     </View>
 
 
                     <View style={styles.commonView}>
-                        <Text style={styles.text}>Capacity :</Text>
-                        <Text style={styles.text2}> {passengers} Passengers</Text>
+                        <Text style={styles.text}>Seats</Text>
+                        <Text style={styles.text2}>{passengers}</Text>
                     </View>
 
 
