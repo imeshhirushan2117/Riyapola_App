@@ -64,7 +64,8 @@ export default function Vehicles() {
           data={data}
           renderItem={({ item }) => (
             <VehicleCard
-              img={item.rent_car_1}
+              // img={item.rent_car_1}
+              img={rent_car_2}
               brandName={item.brandName}
               moduleName={item.moduleName}
               type={item.type}

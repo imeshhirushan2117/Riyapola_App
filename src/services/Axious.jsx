@@ -5,7 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 let cachedToken = null;
 
 const instance = axios.create({
-    baseURL: 'http://192.168.145.135:8080/riyapola', // mobileHosport
+    baseURL: 'http://192.168.1.34:8080/riyapola', // mobileHosport
   
   headers: {
     Authorization: cachedToken ? `Bearer ${cachedToken}` : ''

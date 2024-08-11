@@ -4,7 +4,8 @@ import { View, Image, StyleSheet, FlatList } from 'react-native';
 import instance from '../../services/Axious';
 import CustomerVehicleCard from '../../common/CustomerVehicleCard/CustomerVehicleCard';
 import CustomerDilogBox from '../../common/CustomerDilogBox/CustomerDilogBox';
-
+import rent_car_1 from '../../assets/img/rent_car_1.jpg';
+import rent_car_2 from '../../assets/img/rent_car_2.jpg';
 
 export default function CustomerView({ navigation }) {
 
@@ -68,7 +69,8 @@ export default function CustomerView({ navigation }) {
                 data={data}
                 renderItem={({ item }) => (
                     <CustomerVehicleCard
-                        img={item.rent_car_1}
+                        // img={item.rent_car_1}
+                        img={rent_car_2}
                         brandName={item.brandName}
                         moduleName={item.moduleName}
                         type={item.type}
