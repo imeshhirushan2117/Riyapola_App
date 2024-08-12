@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Dialog, Portal, } from 'react-native-paper';
 import { Text } from 'react-native-paper';
-import { View, ScrollView, StyleSheet, Image } from 'react-native';
+import { View, ScrollView, StyleSheet, Image, Alert } from 'react-native';
 import DesignButton from '../../common/DesignButton/DesignButton';
 import rent_car_2 from '../../assets/img/rent_car_2.jpg';
 import instance from '../../services/Axious';
@@ -46,7 +46,7 @@ export default function DiologBox({ visible, onDismiss, id }) {
     }
 
     const reservationNow = () => {
-        console.log("resavation hutto ");
+        console.log("resavation Done"); 
     }
 
     return (
